@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookUser, LayoutDashboard, ScrollText, BotMessageSquare } from 'lucide-react';
+import { BookUser, LayoutDashboard, ScrollText, Orbit } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -45,8 +45,8 @@ export function MainNav() {
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link href="/" className="flex items-center gap-2 font-headline text-lg font-semibold">
-              <BotMessageSquare className="h-6 w-6 text-primary" />
-              <span>CredFolio</span>
+              <Orbit className="h-6 w-6 text-primary" />
+              <span>Nexus</span>
             </Link>
           </div>
           <div className="flex-1">{renderNavLinks()}</div>

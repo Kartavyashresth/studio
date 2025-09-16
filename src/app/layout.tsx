@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'CredFolio',
+  title: 'Nexus',
   description: 'A Smart Student Hub for record and achievement management.',
 };
 

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   Menu,
-  BotMessageSquare,
+  Orbit,
   LayoutDashboard,
   ScrollText,
   BookUser,
@@ -32,7 +32,7 @@ const navItems = [
 
 export function SiteHeader() {
     const pathname = usePathname();
-    const pageTitle = navItems.find(item => item.href === pathname)?.label || 'CredFolio';
+    const pageTitle = navItems.find(item => item.href === pathname)?.label || 'Nexus';
 
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6 sticky top-0 z-30 bg-background/95 backdrop-blur-sm">
@@ -49,8 +49,8 @@ export function SiteHeader() {
               href="/"
               className="flex items-center gap-2 font-headline text-lg font-semibold"
             >
-              <BotMessageSquare className="h-6 w-6 text-primary" />
-              <span>CredFolio</span>
+              <Orbit className="h-6 w-6 text-primary" />
+              <span>Nexus</span>
             </Link>
           </div>
           <nav className="grid gap-2 text-lg font-medium p-4">
