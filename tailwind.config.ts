@@ -85,10 +85,20 @@ export default {
             height: '0',
           },
         },
+        'fade-in-scale': {
+          '0%': { opacity: '0', transform: 'scale(0.8)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        'fade-in-delay': {
+            '0%, 50%': { opacity: '0' },
+            '100%': { opacity: '1' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-in-scale': 'fade-in-scale 1.5s ease-out forwards',
+        'fade-in-delay': 'fade-in-delay 2.5s ease-out forwards',
       },
     },
   },
