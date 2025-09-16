@@ -37,3 +37,14 @@ export type Student = User & {
     activities: Activity[];
     skills?: string[];
 }
+
+export type Placement = {
+  id: string;
+  companyName: string;
+  companyLogoUrl: string;
+  role: string;
+  type: 'Internship' | 'Full-time';
+  location: string;
+  description: string;
+  tags: string[];
+};

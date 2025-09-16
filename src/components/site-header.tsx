@@ -10,6 +10,7 @@ import {
   BookMarked,
   Users,
   CheckSquare,
+  Briefcase,
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
@@ -32,6 +33,7 @@ const studentNavItems = [
   { href: '/activities', label: 'Activities', icon: ScrollText },
   { href: '/records', label: 'Academic Records', icon: BookMarked },
   { href: '/portfolio', label: 'Portfolio', icon: BookUser },
+  { href: '/placements', label: 'Placements', icon: Briefcase },
 ];
 
 const facultyNavItems = [
