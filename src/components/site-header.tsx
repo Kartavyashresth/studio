@@ -9,6 +9,7 @@ import {
   BookUser,
   BookMarked,
   Users,
+  CheckSquare,
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
@@ -35,6 +36,7 @@ const studentNavItems = [
 
 const facultyNavItems = [
     { href: '/faculty/dashboard', label: 'Faculty Dashboard', icon: Users },
+    { href: '/faculty/verification', label: 'Verification Requests', icon: CheckSquare },
 ];
 
 export function SiteHeader() {

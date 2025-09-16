@@ -119,7 +119,8 @@ export const students: Student[] = [
         credits: 78
     },
     activities: [
-        { id: 'act008', name: 'Photography Club', type: 'Extra-curricular', date: '2023-09-01', status: 'Approved', credits: 4, skills: ['Photography', 'Adobe Photoshop'] }
+        { id: 'act008', name: 'Photography Club', type: 'Extra-curricular', date: '2023-09-01', status: 'Approved', credits: 4, skills: ['Photography', 'Adobe Photoshop'] },
+        { id: 'act011', name: 'Short Film Project', type: 'Extra-curricular', date: '2024-03-01', status: 'Pending', credits: 7, skills: ['Video Editing', 'Storytelling'] }
     ],
     skills: ['Photography', 'Adobe Photoshop', 'Graphic Design'],
   },
@@ -151,7 +152,8 @@ export const students: Student[] = [
         credits: 75
     },
     activities: [
-        { id: 'act010', name: 'Debate Team Captain', type: 'Extra-curricular', date: '2023-10-01', status: 'Approved', credits: 5, skills: ['Public Speaking', 'Critical Thinking', 'Leadership'] }
+        { id: 'act010', name: 'Debate Team Captain', type: 'Extra-curricular', date: '2023-10-01', status: 'Approved', credits: 5, skills: ['Public Speaking', 'Critical Thinking', 'Leadership'] },
+        { id: 'act012', name: 'Hackathon Participation', type: 'Conference', date: '2024-04-12', status: 'Pending', credits: 5, skills: ['Java', 'Problem Solving'] }
     ],
     skills: ['Public Speaking', 'Critical Thinking', 'Leadership', 'Java'],
   }
