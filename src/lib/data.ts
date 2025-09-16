@@ -12,22 +12,22 @@ export const user: User = {
 };
 
 export const facultyUser: Faculty = {
-    name: 'Dr. Alan Grant',
-    email: 'alan.g@university.edu',
+    name: 'pradeep srivastav',
+    email: 'pradeep@hodgecv',
     avatarUrl: 'https://picsum.photos/seed/alan-grant/100/100',
     department: 'Computer Science',
 };
 
 export const registeredFaculty: Faculty[] = [
     {
-        name: 'Dr. Alan Grant',
-        email: 'alan.g@university.edu',
+        name: 'pradeep srivastav',
+        email: 'pradeep@hodgecv',
         avatarUrl: 'https://picsum.photos/seed/alan-grant/100/100',
         department: 'Computer Science',
     },
      {
-        name: 'Dr. Ellie Sattler',
-        email: 'ellie.s@university.edu',
+        name: 'nivedita singh',
+        email: 'nivedita@assprofgecv',
         avatarUrl: 'https://picsum.photos/seed/ellie-sattler/100/100',
         department: 'Paleobotany',
     }
