@@ -53,69 +53,69 @@ function StudentRow({ student }: { student: Student }) {
 
   return (
     <Collapsible asChild open={isOpen} onOpenChange={setIsOpen}>
-      <>
-        <TableRow className="cursor-pointer">
-          <TableCell>
-            <div className="flex items-center gap-3">
-              <Image
-                src={student.avatarUrl}
-                width={40}
-                height={40}
-                alt={student.name}
-                data-ai-hint="profile picture"
-                className="rounded-full"
-              />
-              <div>
-                <div className="font-medium">{student.name}</div>
-                <div className="text-sm text-muted-foreground">{student.email}</div>
-              </div>
-            </div>
-          </TableCell>
-          <TableCell className="hidden md:table-cell">{student.program}</TableCell>
-          <TableCell className="hidden sm:table-cell text-center font-medium">
-            {student.stats.gpa.toFixed(2)}
-          </TableCell>
-          <TableCell className="hidden sm:table-cell text-center font-medium">
-            {student.stats.credits}
-          </TableCell>
-          <TableCell className="text-right">
-            <CollapsibleTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <ChevronRight className={cn('h-4 w-4 transition-transform', isOpen && 'rotate-90')} />
-                <span className="sr-only">View Details</span>
-              </Button>
-            </CollapsibleTrigger>
-          </TableCell>
-        </TableRow>
-        <CollapsibleContent asChild>
-          <tr className="bg-muted/50">
-            <TableCell colSpan={5} className="p-0">
-                <div className="p-6">
-                    <h4 className="font-semibold text-lg mb-4">Extracurricular Skills</h4>
-                    {categorizedSkills && Object.keys(categorizedSkills).length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {Object.entries(categorizedSkills).map(([category, skills]) => (
-                                <div key={category}>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        {categoryIcons[category]}
-                                        <h5 className="font-semibold">{category}</h5>
-                                    </div>
-                                    <div className="flex flex-wrap gap-2">
-                                        {skills.map(skill => (
-                                            <Badge key={skill} variant="secondary">{skill}</Badge>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <p className="text-muted-foreground text-sm">No specific skills listed for approved activities.</p>
-                    )}
+        <tbody className={cn(isOpen && 'border-b')}>
+            <TableRow className="cursor-pointer">
+              <TableCell>
+                <div className="flex items-center gap-3">
+                  <Image
+                    src={student.avatarUrl}
+                    width={40}
+                    height={40}
+                    alt={student.name}
+                    data-ai-hint="profile picture"
+                    className="rounded-full"
+                  />
+                  <div>
+                    <div className="font-medium">{student.name}</div>
+                    <div className="text-sm text-muted-foreground">{student.email}</div>
+                  </div>
                 </div>
-            </TableCell>
-          </tr>
-        </CollapsibleContent>
-      </>
+              </TableCell>
+              <TableCell className="hidden md:table-cell">{student.program}</TableCell>
+              <TableCell className="hidden sm:table-cell text-center font-medium">
+                {student.stats.gpa.toFixed(2)}
+              </TableCell>
+              <TableCell className="hidden sm:table-cell text-center font-medium">
+                {student.stats.credits}
+              </TableCell>
+              <TableCell className="text-right">
+                <CollapsibleTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <ChevronRight className={cn('h-4 w-4 transition-transform', isOpen && 'rotate-90')} />
+                    <span className="sr-only">View Details</span>
+                  </Button>
+                </CollapsibleTrigger>
+              </TableCell>
+            </TableRow>
+            <CollapsibleContent asChild>
+              <tr className="bg-muted/50">
+                <TableCell colSpan={5} className="p-0">
+                    <div className="p-6">
+                        <h4 className="font-semibold text-lg mb-4">Extracurricular Skills</h4>
+                        {categorizedSkills && Object.keys(categorizedSkills).length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {Object.entries(categorizedSkills).map(([category, skills]) => (
+                                    <div key={category}>
+                                        <div className="flex items-center gap-2 mb-2">
+                                            {categoryIcons[category]}
+                                            <h5 className="font-semibold">{category}</h5>
+                                        </div>
+                                        <div className="flex flex-wrap gap-2">
+                                            {skills.map(skill => (
+                                                <Badge key={skill} variant="secondary">{skill}</Badge>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <p className="text-muted-foreground text-sm">No specific skills listed for approved activities.</p>
+                        )}
+                    </div>
+                </TableCell>
+              </tr>
+            </CollapsibleContent>
+        </tbody>
     </Collapsible>
   );
 }
@@ -134,11 +134,9 @@ export function StudentList({ students }: { students: Student[] }) {
               <TableHead className="text-right"></TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
             {students.map((student) => (
               <StudentRow key={student.studentId} student={student} />
             ))}
-          </TableBody>
         </Table>
       </CardContent>
     </Card>
