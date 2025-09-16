@@ -1,4 +1,4 @@
-import type { User, Activity, AcademicStats } from '@/lib/types';
+import type { User, Activity, AcademicStats, AcademicRecord } from '@/lib/types';
 import { PlaceHolderImages } from './placeholder-images';
 
 const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar');
@@ -71,4 +71,11 @@ export const activities: Activity[] = [
     credits: 5,
     approver: 'Dr. Evelyn Reed',
   },
+];
+
+export const academicRecords: AcademicRecord[] = [
+  { id: 'rec001', courseName: 'Introduction to Algorithms', courseCode: 'CS101', semester: 'Fall 2022', grade: 'A' },
+  { id: 'rec002', courseName: 'Data Structures', courseCode: 'CS102', semester: 'Spring 2023', grade: 'A-' },
+  { id: 'rec003', courseName: 'Database Management Systems', courseCode: 'CS201', semester: 'Fall 2023', grade: 'B+' },
+  { id: 'rec004', courseName: 'Operating Systems', courseCode: 'CS202', semester: 'Spring 2024', grade: 'A' },
 ];

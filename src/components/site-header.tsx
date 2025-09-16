@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   ScrollText,
   BookUser,
+  BookMarked,
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
@@ -27,6 +28,7 @@ import { NexusLogo } from './nexus-logo';
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/activities', label: 'Activities', icon: ScrollText },
+  { href: '/records', label: 'Academic Records', icon: BookMarked },
   { href: '/portfolio', label: 'Portfolio', icon: BookUser },
 ];
 

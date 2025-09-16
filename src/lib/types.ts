@@ -22,3 +22,11 @@ export type AcademicStats = {
   attendance: number;
   credits: number;
 };
+
+export type AcademicRecord = {
+  id: string;
+  courseName: string;
+  courseCode: string;
+  semester: string;
+  grade: string;
+};
