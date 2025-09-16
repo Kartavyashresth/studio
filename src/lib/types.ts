@@ -15,6 +15,7 @@ export type Activity = {
   credits: number;
   approver?: string;
   documentUrl?: string;
+  skills?: string[];
 };
 
 export type AcademicStats = {
@@ -34,4 +35,5 @@ export type AcademicRecord = {
 export type Student = User & {
     stats: AcademicStats;
     activities: Activity[];
+    skills?: string[];
 }

@@ -26,6 +26,7 @@ export const activities: Activity[] = [
     status: 'Approved',
     credits: 5,
     approver: 'Dr. Evelyn Reed',
+    skills: ['Machine Learning', 'Public Speaking'],
   },
   {
     id: 'act002',
@@ -35,6 +36,7 @@ export const activities: Activity[] = [
     status: 'Approved',
     credits: 15,
     approver: 'Tech Solutions Inc.',
+    skills: ['React', 'Node.js', 'Teamwork'],
   },
   {
     id: 'act003',
@@ -43,6 +45,7 @@ export const activities: Activity[] = [
     date: '2023-11-05',
     status: 'Pending',
     credits: 10,
+    skills: ['Python', 'Pandas', 'Data Analysis'],
   },
   {
     id: 'act004',
@@ -61,6 +64,7 @@ export const activities: Activity[] = [
     status: 'Approved',
     credits: 8,
     approver: 'Faculty of Student Affairs',
+    skills: ['Leadership', 'Project Management'],
   },
   {
     id: 'act006',
@@ -70,7 +74,18 @@ export const activities: Activity[] = [
     status: 'Rejected',
     credits: 5,
     approver: 'Dr. Evelyn Reed',
+    skills: ['Research', 'Academic Writing'],
   },
+  {
+    id: 'act007',
+    name: 'Varsity Basketball Team',
+    type: 'Extra-curricular',
+    date: '2023-09-01',
+    status: 'Approved',
+    credits: 3,
+    approver: 'Coach Davis',
+    skills: ['Teamwork', 'Athleticism', 'Sportsmanship'],
+  }
 ];
 
 export const academicRecords: AcademicRecord[] = [
@@ -80,11 +95,17 @@ export const academicRecords: AcademicRecord[] = [
   { id: 'rec004', courseName: 'Operating Systems', courseCode: 'CS202', semester: 'Spring 2024', grade: 'A' },
 ];
 
+const allSkills = (activities: Activity[]) => {
+    const approvedActivities = activities.filter(a => a.status === 'Approved');
+    return [...new Set(approvedActivities.flatMap(a => a.skills || []))];
+}
+
 export const students: Student[] = [
   {
     ...user,
     stats: academicStats,
     activities: activities,
+    skills: allSkills(activities),
   },
   {
     name: 'Jane Smith',
@@ -97,7 +118,10 @@ export const students: Student[] = [
         attendance: 95,
         credits: 78
     },
-    activities: [],
+    activities: [
+        { id: 'act008', name: 'Photography Club', type: 'Extra-curricular', date: '2023-09-01', status: 'Approved', credits: 4, skills: ['Photography', 'Adobe Photoshop'] }
+    ],
+    skills: ['Photography', 'Adobe Photoshop', 'Graphic Design'],
   },
   {
     name: 'Robert Johnson',
@@ -110,7 +134,10 @@ export const students: Student[] = [
         attendance: 88,
         credits: 92
     },
-    activities: [],
+    activities: [
+        { id: 'act009', name: 'Robotics Competition', type: 'Extra-curricular', date: '2024-02-15', status: 'Approved', credits: 6, skills: ['Robotics', 'CAD', 'Problem Solving'] }
+    ],
+    skills: ['Robotics', 'CAD', 'Problem Solving', 'Leadership'],
   },
   {
     name: 'Emily White',
@@ -123,6 +150,9 @@ export const students: Student[] = [
         attendance: 91,
         credits: 75
     },
-    activities: [],
+    activities: [
+        { id: 'act010', name: 'Debate Team Captain', type: 'Extra-curricular', date: '2023-10-01', status: 'Approved', credits: 5, skills: ['Public Speaking', 'Critical Thinking', 'Leadership'] }
+    ],
+    skills: ['Public Speaking', 'Critical Thinking', 'Leadership', 'Java'],
   }
 ]
