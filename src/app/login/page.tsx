@@ -52,7 +52,6 @@ export default function LoginPage() {
                                 <SelectContent>
                                     <SelectItem value="student">Student</SelectItem>
                                     <SelectItem value="faculty">Faculty</SelectItem>
-                                    <SelectItem value="employer">Employer</SelectItem>
                                     <SelectItem value="institute_admin">Institute Admin</SelectItem>
                                     <SelectItem value="admin">Admin</SelectItem>
                                 </SelectContent>
