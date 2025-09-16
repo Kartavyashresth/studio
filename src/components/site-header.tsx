@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   Menu,
-  Orbit,
   LayoutDashboard,
   ScrollText,
   BookUser,
@@ -23,6 +22,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+import { NexusLogo } from './nexus-logo';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -49,7 +49,7 @@ export function SiteHeader() {
               href="/"
               className="flex items-center gap-2 font-headline text-lg font-semibold"
             >
-              <Orbit className="h-6 w-6 text-primary" />
+              <NexusLogo className="h-6 w-6" />
               <span>Nexus</span>
             </Link>
           </div>
