@@ -48,3 +48,13 @@ export type Placement = {
   description: string;
   tags: string[];
 };
+
+export type CollegeEvent = {
+  id: string;
+  name: string;
+  date: string;
+  location: string;
+  description: string;
+  imageUrl: string;
+  tags: string[];
+};

@@ -11,6 +11,7 @@ import {
   Users,
   CheckSquare,
   Briefcase,
+  Calendar,
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
@@ -34,6 +35,7 @@ const studentNavItems = [
   { href: '/records', label: 'Academic Records', icon: BookMarked },
   { href: '/portfolio', label: 'Portfolio', icon: BookUser },
   { href: '/placements', label: 'Placements', icon: Briefcase },
+  { href: '/events', label: 'Events', icon: Calendar },
 ];
 
 const facultyNavItems = [
