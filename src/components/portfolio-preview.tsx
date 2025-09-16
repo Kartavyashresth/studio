@@ -2,11 +2,11 @@ import Image from 'next/image';
 import { user, activities } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Briefcase, Calendar, CheckBadgeIcon, Certificate, Presentation, Trophy } from 'lucide-react';
+import { Briefcase, Calendar, Presentation, Trophy } from 'lucide-react';
 
 const activityIcons = {
     'Internship': <Briefcase className="h-5 w-5 text-primary" />,
-    'MOOC': <Certificate className="h-5 w-5 text-primary" />,
+    'MOOC': <CustomCertificateIcon className="h-5 w-5 text-primary" />,
     'Conference': <Presentation className="h-5 w-5 text-primary" />,
     'Seminar': <Presentation className="h-5 w-5 text-primary" />,
     'Extra-curricular': <Trophy className="h-5 w-5 text-primary" />,
@@ -83,7 +83,7 @@ export function PortfolioPreview() {
 }
 
 // Custom Certificate icon as it is not in lucide-react
-const Certificate = (props: React.SVGProps<SVGSVGElement>) => (
+const CustomCertificateIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
         <path d="M12 15l-3.5-3.5a2.5 2.5 0 1 1 3.5 3.5z" />
         <path d="M14 10.5L8.5 5" />
