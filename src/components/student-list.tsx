@@ -56,7 +56,7 @@ function FeedbackDialog({ student }: { student: Student }) {
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
                 <Button variant="outline" size="sm">
-                    <MessageSquare className="mr-2" />
+                    <MessageSquare className="mr-2 h-4 w-4" />
                     Send Feedback
                 </Button>
             </DialogTrigger>
@@ -125,8 +125,13 @@ function StudentRow({ student }: { student: Student }) {
               <TableCell className="hidden sm:table-cell text-center font-medium">
                 {student.stats.gpa.toFixed(2)}
               </TableCell>
-              <TableCell className="hidden sm:table-cell text-center font-medium">
-                {student.stats.credits}
+              <TableCell className="hidden sm:table-cell">
+                 <Button asChild variant="outline" size="sm">
+                    <Link href="/portfolio">
+                        <BookUser className="mr-2 h-4 w-4" />
+                        View Portfolio
+                    </Link>
+                </Button>
               </TableCell>
               <TableCell className="text-right">
                 <CollapsibleTrigger asChild>
@@ -165,12 +170,6 @@ function StudentRow({ student }: { student: Student }) {
                         </div>
                         <div className="lg:col-span-1 lg:border-l lg:pl-6 flex flex-col justify-center gap-3">
                             <h4 className="font-semibold text-base">Actions</h4>
-                            <Button asChild variant="outline" size="sm">
-                                <Link href="/portfolio">
-                                    <BookUser className="mr-2" />
-                                    View Portfolio
-                                </Link>
-                            </Button>
                             <FeedbackDialog student={student} />
                         </div>
                     </div>
@@ -192,7 +191,7 @@ export function StudentList({ students }: { students: Student[] }) {
               <TableHead>Student</TableHead>
               <TableHead className="hidden md:table-cell">Program</TableHead>
               <TableHead className="hidden sm:table-cell text-center">GPA</TableHead>
-              <TableHead className="hidden sm:table-cell text-center">Credits</TableHead>
+              <TableHead className="hidden sm:table-cell">Portfolio</TableHead>
               <TableHead className="text-right"></TableHead>
             </TableRow>
           </TableHeader>
