@@ -1,8 +1,13 @@
+'use client';
+
 import Image from 'next/image';
-import { user, activities } from '@/lib/data';
+import { user as staticUser, activities } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Briefcase, Calendar, Presentation, Trophy } from 'lucide-react';
+import { Briefcase, Calendar, Presentation, Trophy, Camera } from 'lucide-react';
+import { useState, useRef, type ChangeEvent } from 'react';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+
 
 // Custom Certificate icon as it is not in lucide-react
 const CustomCertificateIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -29,6 +34,9 @@ const activityIcons = {
 const approvedActivities = activities.filter(a => a.status === 'Approved');
 
 export function PortfolioPreview() {
+  const [user, setUser] = useState(staticUser);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const groupActivities = (
     activities: typeof approvedActivities, 
     key: 'type' | 'status'
@@ -45,19 +53,55 @@ export function PortfolioPreview() {
   
   const activitiesByType = groupActivities(approvedActivities, 'type');
 
+  const handleAvatarClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (e.target?.result) {
+          setUser({ ...user, avatarUrl: e.target.result as string });
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+
   return (
     <Card className="overflow-hidden">
       <CardContent className="p-0">
         <div className="bg-muted/40 p-8">
             <div className="flex flex-col sm:flex-row items-center gap-6">
-                <Image 
-                    src={user.avatarUrl}
-                    width={100}
-                    height={100}
-                    alt={user.name}
-                    data-ai-hint="profile picture"
-                    className="rounded-full border-4 border-background shadow-md"
-                />
+                <div className="relative group">
+                    <Image 
+                        src={user.avatarUrl}
+                        width={100}
+                        height={100}
+                        alt={user.name}
+                        data-ai-hint="profile picture"
+                        className="rounded-full border-4 border-background shadow-md"
+                    />
+                     <Button 
+                        variant="ghost" 
+                        size="icon"
+                        onClick={handleAvatarClick}
+                        className="absolute inset-0 h-full w-full bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                        aria-label="Change profile picture"
+                     >
+                        <Camera className="h-6 w-6" />
+                     </Button>
+                     <input 
+                        type="file" 
+                        ref={fileInputRef} 
+                        onChange={handleFileChange}
+                        className="hidden" 
+                        accept="image/*"
+                     />
+                </div>
                 <div>
                     <h1 className="text-3xl font-headline">{user.name}</h1>
                     <p className="text-muted-foreground">{user.program}</p>
