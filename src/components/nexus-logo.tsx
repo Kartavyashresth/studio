@@ -16,12 +16,11 @@ export function NexusLogo(props: SVGProps<SVGSVGElement>) {
       {...props}
       className={cn("text-primary", props.className)}
     >
-      <path d="M18 6L6 18" />
-      <path d="M6 6l7 7" />
-      <path d="M15 3l-1.5 1.5" />
-      <path d="M21 9l-1.5-1.5" />
-      <path d="M9 21l1.5-1.5" />
-      <path d="M3 15l1.5 1.5" />
+        <path d="M10 10l4 4m0-4l-4 4" />
+        <path d="M4.2 19.8c-1.6-1.6-2-4.2-1.2-6.4s2.4-4 4.4-5.2" />
+        <path d="M19.8 4.2c1.6 1.6 2 4.2 1.2 6.4s-2.4 4-4.4 5.2" />
+        <path d="M4.2 4.2c1.6 1.6 4.2 2 6.4 1.2s4-2.4 5.2-4.4" />
+        <path d="M19.8 19.8c-1.6-1.6-4.2-2-6.4-1.2s-4 2.4-5.2 4.4" />
     </svg>
   );
 }
