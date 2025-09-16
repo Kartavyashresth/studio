@@ -108,8 +108,8 @@ export const students: Student[] = [
     skills: allSkills(activities),
   },
   {
-    name: 'Jane Smith',
-    email: 'jane.smith@university.edu',
+    name: 'amit singh',
+    email: 'amit@gecv',
     avatarUrl: 'https://picsum.photos/seed/jane-smith/100/100',
     program: 'B.A. in Digital Media',
     studentId: 'STU654321',
@@ -124,8 +124,8 @@ export const students: Student[] = [
     skills: ['Photography', 'Adobe Photoshop', 'Graphic Design'],
   },
   {
-    name: 'Robert Johnson',
-    email: 'robert.j@university.edu',
+    name: 'rajneesh yadav',
+    email: 'rajneesh@gecv',
     avatarUrl: 'https://picsum.photos/seed/robert-j/100/100',
     program: 'B.S. in Mechanical Engineering',
     studentId: 'STU789012',
@@ -140,8 +140,8 @@ export const students: Student[] = [
     skills: ['Robotics', 'CAD', 'Problem Solving', 'Leadership'],
   },
   {
-    name: 'Emily White',
-    email: 'emily.w@university.edu',
+    name: 'sneha roy',
+    email: 'sneha@gecv',
     avatarUrl: 'https://picsum.photos/seed/emily-w/100/100',
     program: 'B.Tech in Computer Science',
     studentId: 'STU345678',
