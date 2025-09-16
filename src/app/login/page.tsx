@@ -1,4 +1,7 @@
+'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { NexusLogo } from '@/components/nexus-logo';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,6 +11,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { LogIn } from 'lucide-react';
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [role, setRole] = useState('student');
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (role === 'faculty') {
+      router.push('/faculty/dashboard');
+    } else {
+      router.push('/dashboard');
+    }
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-muted/40 p-4">
         <div className="w-full max-w-md">
@@ -20,10 +35,10 @@ export default function LoginPage() {
                     <CardDescription>Select your role to sign in to your account</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <form className="space-y-4">
+                    <form className="space-y-4" onSubmit={handleSubmit}>
                          <div className="space-y-2">
                             <Label htmlFor="role">Role</Label>
-                            <Select name="role" required defaultValue="student">
+                            <Select name="role" required value={role} onValueChange={setRole}>
                                 <SelectTrigger id="role">
                                     <SelectValue placeholder="Select your role" />
                                 </SelectTrigger>
