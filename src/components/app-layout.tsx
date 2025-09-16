@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { MainNav } from '@/components/main-nav';
 import { SiteHeader } from '@/components/site-header';
+import { Chatbot } from '@/components/chatbot';
 
 export function AppLayout({ children }: PropsWithChildren) {
   return (
@@ -14,6 +15,7 @@ export function AppLayout({ children }: PropsWithChildren) {
           </div>
         </main>
       </div>
+      <Chatbot />
     </div>
   );
 }

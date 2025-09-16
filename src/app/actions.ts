@@ -8,6 +8,10 @@ import {
   verifyCertificate,
   type VerifyCertificateInput,
 } from '@/ai/flows/verify-certificate';
+import {
+    askChatbot,
+    type ChatbotInput,
+} from '@/ai/flows/chatbot';
 
 
 export async function generateVerificationRequest(
@@ -37,6 +41,19 @@ export async function checkCertificateAuthenticity(input: VerifyCertificateInput
         return {
             success: false,
             error: 'Failed to verify certificate. Please try again.',
+        };
+    }
+}
+
+export async function getChatbotResponse(input: ChatbotInput) {
+    try {
+        const result = await askChatbot(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error getting chatbot response:', error);
+        return {
+            success: false,
+            error: 'Sorry, I am having trouble connecting. Please try again later.',
         };
     }
 }
