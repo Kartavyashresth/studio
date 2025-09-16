@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState, useRef, type ChangeEvent } from 'react';
 import {
   Menu,
   LayoutDashboard,
@@ -19,11 +20,12 @@ import {
   UserCog, 
   Cog, 
   BarChart, 
-  UserPlus
+  UserPlus,
+  Camera
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
-import { user } from '@/lib/data';
+import { user as staticUser } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -69,6 +71,9 @@ const adminNavItems = [
 
 export function SiteHeader() {
     const pathname = usePathname();
+    const [avatarUrl, setAvatarUrl] = useState(staticUser.avatarUrl);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
     const isFaculty = pathname.startsWith('/faculty');
     const isEmployer = pathname.startsWith('/employer');
     const isAdmin = pathname.startsWith('/institute-admin');
@@ -83,8 +88,32 @@ export function SiteHeader() {
 
     const pageTitle = navItems.find(item => pathname.startsWith(item.href))?.label || 'Nexus';
 
+    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          if (e.target?.result) {
+            setAvatarUrl(e.target.result as string);
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+
+    const handleAvatarClick = () => {
+      fileInputRef.current?.click();
+    };
+
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6 sticky top-0 z-30 bg-background/95 backdrop-blur-sm">
+      <input 
+          type="file" 
+          ref={fileInputRef} 
+          onChange={handleFileChange}
+          className="hidden" 
+          accept="image/*"
+      />
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="shrink-0 md:hidden">
@@ -131,10 +160,10 @@ export function SiteHeader() {
         <DropdownMenuTrigger asChild>
           <Button variant="secondary" size="icon" className="rounded-full">
             <Image
-              src={user.avatarUrl}
+              src={avatarUrl}
               width={36}
               height={36}
-              alt={user.name}
+              alt={staticUser.name}
               data-ai-hint="profile picture"
               className="rounded-full"
             />
@@ -144,6 +173,10 @@ export function SiteHeader() {
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
+          <DropdownMenuItem onSelect={handleAvatarClick}>
+            <Camera className="mr-2 h-4 w-4" />
+            <span>Change Picture</span>
+          </DropdownMenuItem>
           <DropdownMenuItem>Profile</DropdownMenuItem>
           <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuSeparator />
