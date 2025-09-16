@@ -25,7 +25,7 @@ export const activities: Activity[] = [
     date: '2023-10-22',
     status: 'Approved',
     credits: 5,
-    approver: 'Dr. Evelyn Reed',
+    approver: 'dr. sumit kumar',
     skills: ['Machine Learning', 'Public Speaking'],
   },
   {
@@ -73,7 +73,7 @@ export const activities: Activity[] = [
     date: '2024-01-10',
     status: 'Rejected',
     credits: 5,
-    approver: 'Dr. Evelyn Reed',
+    approver: 'dr. sumit kumar',
     skills: ['Research', 'Academic Writing'],
   },
   {
