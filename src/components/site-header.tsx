@@ -22,7 +22,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { NexusLogo } from './nexus-logo';
 
@@ -48,6 +48,7 @@ export function SiteHeader() {
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="flex flex-col p-0">
+          <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link
               href="/"
