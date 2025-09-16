@@ -53,7 +53,7 @@ function StudentRow({ student }: { student: Student }) {
 
   return (
     <Collapsible asChild open={isOpen} onOpenChange={setIsOpen}>
-      <tbody className="border-0">
+      <>
         <TableRow className="cursor-pointer">
           <TableCell>
             <div className="flex items-center gap-3">
@@ -115,7 +115,7 @@ function StudentRow({ student }: { student: Student }) {
             </TableCell>
           </tr>
         </CollapsibleContent>
-      </tbody>
+      </>
     </Collapsible>
   );
 }
