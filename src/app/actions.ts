@@ -4,6 +4,11 @@ import {
   autoVerificationRequest,
   type AutoVerificationRequestInput,
 } from '@/ai/flows/auto-verification-request';
+import {
+  verifyCertificate,
+  type VerifyCertificateInput,
+} from '@/ai/flows/verify-certificate';
+
 
 export async function generateVerificationRequest(
   input: AutoVerificationRequestInput
@@ -20,4 +25,18 @@ export async function generateVerificationRequest(
       error: 'Failed to generate verification request. Please try again.',
     };
   }
+}
+
+export async function checkCertificateAuthenticity(input: VerifyCertificateInput) {
+    try {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        const result = await verifyCertificate(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error verifying certificate:', error);
+        return {
+            success: false,
+            error: 'Failed to verify certificate. Please try again.',
+        };
+    }
 }

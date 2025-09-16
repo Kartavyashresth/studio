@@ -7,7 +7,13 @@ export default function VerificationPage() {
   const pendingActivities = students.flatMap(student => 
     student.activities
       .filter(activity => activity.status === 'Pending')
-      .map(activity => ({ ...activity, studentName: student.name, studentId: student.studentId }))
+      .map(activity => ({ 
+          ...activity, 
+          studentName: student.name, 
+          studentId: student.studentId,
+          // Use a placeholder if documentUrl is missing for the demo
+          documentUrl: activity.documentUrl || 'https://picsum.photos/seed/doc-placeholder/800/1100'
+        }))
   );
 
   return (

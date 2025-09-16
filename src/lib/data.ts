@@ -27,6 +27,7 @@ export const activities: Activity[] = [
     credits: 5,
     approver: 'dr. sumit kumar',
     skills: ['Machine Learning', 'Public Speaking'],
+    documentUrl: 'https://picsum.photos/seed/doc-act001/800/1100',
   },
   {
     id: 'act002',
@@ -37,6 +38,7 @@ export const activities: Activity[] = [
     credits: 15,
     approver: 'Tech Solutions Inc.',
     skills: ['React', 'Node.js', 'Teamwork'],
+    documentUrl: 'https://picsum.photos/seed/doc-act002/800/1100',
   },
   {
     id: 'act003',
@@ -46,6 +48,7 @@ export const activities: Activity[] = [
     status: 'Pending',
     credits: 10,
     skills: ['Python', 'Pandas', 'Data Analysis'],
+    documentUrl: 'https://picsum.photos/seed/doc-act003/800/1100',
   },
   {
     id: 'act004',
@@ -120,7 +123,7 @@ export const students: Student[] = [
     },
     activities: [
         { id: 'act008', name: 'Photography Club', type: 'Extra-curricular', date: '2023-09-01', status: 'Approved', credits: 4, skills: ['Photography', 'Adobe Photoshop'] },
-        { id: 'act011', name: 'Short Film Project', type: 'Extra-curricular', date: '2024-03-01', status: 'Pending', credits: 7, skills: ['Video Editing', 'Storytelling'] }
+        { id: 'act011', name: 'Short Film Project', type: 'Extra-curricular', date: '2024-03-01', status: 'Pending', credits: 7, skills: ['Video Editing', 'Storytelling'], documentUrl: 'https://picsum.photos/seed/doc-act011/800/1100' }
     ],
     skills: ['Photography', 'Adobe Photoshop', 'Graphic Design'],
   },
@@ -153,7 +156,7 @@ export const students: Student[] = [
     },
     activities: [
         { id: 'act010', name: 'Debate Team Captain', type: 'Extra-curricular', date: '2023-10-01', status: 'Approved', credits: 5, skills: ['Public Speaking', 'Critical Thinking', 'Leadership'] },
-        { id: 'act012', name: 'Hackathon Participation', type: 'Conference', date: '2024-04-12', status: 'Pending', credits: 5, skills: ['Java', 'Problem Solving'] }
+        { id: 'act012', name: 'Hackathon Participation', type: 'Conference', date: '2024-04-12', status: 'Pending', credits: 5, skills: ['Java', 'Problem Solving'], documentUrl: 'https://picsum.photos/seed/doc-act012/800/1100' }
     ],
     skills: ['Public Speaking', 'Critical Thinking', 'Leadership', 'Java'],
   }
