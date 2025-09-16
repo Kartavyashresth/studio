@@ -7,16 +7,21 @@ import { BookUser, LayoutDashboard, ScrollText, BookMarked, Users } from 'lucide
 import { cn } from '@/lib/utils';
 import { NexusLogo } from '@/components/nexus-logo';
 
-const navItems = [
+const studentNavItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/activities', label: 'Activities', icon: ScrollText },
   { href: '/records', label: 'Academic Records', icon: BookMarked },
   { href: '/portfolio', label: 'Portfolio', icon: BookUser },
-  { href: '/faculty/dashboard', label: 'Faculty Dashboard', icon: Users },
+];
+
+const facultyNavItems = [
+    { href: '/faculty/dashboard', label: 'Faculty Dashboard', icon: Users },
 ];
 
 export function MainNav() {
   const pathname = usePathname();
+  const isFaculty = pathname.startsWith('/faculty');
+  const navItems = isFaculty ? facultyNavItems : studentNavItems;
 
   const renderNavLinks = (isMobile = false) => (
     <nav className={cn('flex flex-col gap-2', isMobile ? 'p-4' : 'px-2 pt-4')}>

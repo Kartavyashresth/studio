@@ -26,16 +26,22 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/s
 import { cn } from '@/lib/utils';
 import { NexusLogo } from './nexus-logo';
 
-const navItems = [
+const studentNavItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/activities', label: 'Activities', icon: ScrollText },
   { href: '/records', label: 'Academic Records', icon: BookMarked },
   { href: '/portfolio', label: 'Portfolio', icon: BookUser },
-  { href: '/faculty/dashboard', label: 'Faculty Dashboard', icon: Users },
+];
+
+const facultyNavItems = [
+    { href: '/faculty/dashboard', label: 'Faculty Dashboard', icon: Users },
 ];
 
 export function SiteHeader() {
     const pathname = usePathname();
+    const isFaculty = pathname.startsWith('/faculty');
+    const navItems = isFaculty ? facultyNavItems : studentNavItems;
+
     const pageTitle = navItems.find(item => pathname.startsWith(item.href))?.label || 'Nexus';
 
   return (
