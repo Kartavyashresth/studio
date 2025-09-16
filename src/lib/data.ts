@@ -5,7 +5,7 @@ const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar');
 
 export const user: User = {
   name: 'Kartavya Doe',
-  email: 'kartavya.doe@university.edu',
+  email: 'kartavya@gecv',
   avatarUrl: userAvatar?.imageUrl || 'https://picsum.photos/seed/user-avatar/100/100',
   program: 'B.Tech in Computer Science',
   studentId: 'STU123456',
