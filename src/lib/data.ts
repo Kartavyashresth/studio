@@ -1,4 +1,4 @@
-import type { User, Activity, AcademicStats, AcademicRecord, Student } from '@/lib/types';
+import type { User, Activity, AcademicStats, AcademicRecord, Student, Faculty } from '@/lib/types';
 import { PlaceHolderImages } from './placeholder-images';
 
 const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar');
@@ -9,6 +9,13 @@ export const user: User = {
   avatarUrl: userAvatar?.imageUrl || 'https://picsum.photos/seed/user-avatar/100/100',
   program: 'B.Tech in Computer Science',
   studentId: 'STU123456',
+};
+
+export const facultyUser: Faculty = {
+    name: 'Dr. Alan Grant',
+    email: 'alan.g@university.edu',
+    avatarUrl: 'https://picsum.photos/seed/alan-grant/100/100',
+    department: 'Computer Science',
 };
 
 export const academicStats: AcademicStats = {

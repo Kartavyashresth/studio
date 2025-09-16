@@ -6,6 +6,13 @@ export type User = {
   studentId: string;
 };
 
+export type Faculty = {
+    name: string;
+    email: string;
+    avatarUrl: string;
+    department: string;
+};
+
 export type Activity = {
   id: string;
   name: string;
