@@ -83,7 +83,7 @@ export const activities: Activity[] = [
     date: '2023-09-01',
     status: 'Approved',
     credits: 3,
-    approver: 'Coach Davis',
+    approver: 'Coach Amit',
     skills: ['Teamwork', 'Athleticism', 'Sportsmanship'],
   }
 ];
