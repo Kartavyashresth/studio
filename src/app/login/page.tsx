@@ -16,10 +16,17 @@ export default function LoginPage() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const firstName = formData.get('firstName') as string;
+    const lastName = formData.get('lastName') as string;
+    const fullName = `${firstName} ${lastName}`.trim();
+
+    const urlName = encodeURIComponent(fullName);
+
     if (role === 'faculty') {
-      router.push('/faculty/dashboard');
+      router.push(`/faculty/dashboard?name=${urlName}`);
     } else {
-      router.push('/dashboard');
+      router.push(`/dashboard?name=${urlName}`);
     }
   };
 
@@ -50,6 +57,16 @@ export default function LoginPage() {
                                     <SelectItem value="admin">Admin</SelectItem>
                                 </SelectContent>
                             </Select>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="firstName">First Name</Label>
+                                <Input id="firstName" name="firstName" placeholder="John" required />
+                            </div>
+                             <div className="space-y-2">
+                                <Label htmlFor="lastName">Last Name</Label>
+                                <Input id="lastName" name="lastName" placeholder="Doe" required />
+                            </div>
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="email">Email</Label>

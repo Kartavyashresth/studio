@@ -6,18 +6,19 @@ import { Users, FileClock, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
-export default function FacultyDashboardPage() {
+export default function FacultyDashboardPage({ searchParams }: { searchParams: { name?: string } }) {
     const pendingActivitiesCount = students.flatMap(student =>
         student.activities.filter(activity => activity.status === 'Pending')
     ).length;
 
     const totalStudents = students.length;
+    const facultyName = searchParams.name || facultyUser.name;
 
   return (
     <AppLayout>
       <div className="flex flex-col gap-8">
         <div>
-          <h1 className="text-3xl md:text-4xl font-headline tracking-tight">Welcome, {facultyUser.name}!</h1>
+          <h1 className="text-3xl md:text-4xl font-headline tracking-tight">Welcome, {facultyName}!</h1>
           <p className="text-muted-foreground mt-1">
             Here's an overview of student achievements for your mentorship and guidance.
           </p>
