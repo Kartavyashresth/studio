@@ -114,7 +114,7 @@ export function ActivitySubmission() {
         {state.status === 'idle' && (
           <form onSubmit={handleSubmit}>
             <DialogHeader>
-              <DialogTitle className="sr-only">Add New Activity</DialogTitle>
+              <DialogTitle>Add New Activity</DialogTitle>
               <DialogDescription>
                 Upload a document to get an AI-powered suggestion for the verifier.
               </DialogDescription>
@@ -167,7 +167,7 @@ export function ActivitySubmission() {
         {state.status === 'success' && (
            <>
             <DialogHeader>
-              <DialogTitle className="sr-only">AI Suggestion</DialogTitle>
+              <DialogTitle>AI Suggestion</DialogTitle>
               <DialogDescription>
                 Our AI has suggested an approver based on your submission.
               </DialogDescription>
@@ -195,7 +195,7 @@ export function ActivitySubmission() {
         {state.status === 'error' && (
             <>
               <DialogHeader>
-                <DialogTitle className="sr-only">Error</DialogTitle>
+                <DialogTitle>Error</DialogTitle>
                 <DialogDescription>
                   {state.message}
                 </DialogDescription>
