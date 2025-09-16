@@ -22,8 +22,10 @@ export default function LoginPage() {
     const fullName = `${firstName} ${lastName}`.trim();
 
     const urlName = encodeURIComponent(fullName);
-
-    if (role === 'faculty') {
+    
+    if (role === 'employer') {
+        router.push(`/employer/dashboard?name=${urlName}`);
+    } else if (role === 'faculty') {
       router.push(`/faculty/dashboard?name=${urlName}`);
     } else {
       router.push(`/dashboard?name=${urlName}`);
@@ -52,6 +54,7 @@ export default function LoginPage() {
                                 <SelectContent>
                                     <SelectItem value="student">Student</SelectItem>
                                     <SelectItem value="faculty">Faculty</SelectItem>
+                                    <SelectItem value="employer">Employer</SelectItem>
                                     <SelectItem value="institute_admin">Institute Admin</SelectItem>
                                     <SelectItem value="admin">Admin</SelectItem>
                                 </SelectContent>

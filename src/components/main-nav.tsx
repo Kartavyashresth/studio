@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookUser, LayoutDashboard, ScrollText, BookMarked, Users, CheckSquare, Briefcase, Calendar, FileText } from 'lucide-react';
+import { BookUser, LayoutDashboard, ScrollText, BookMarked, Users, CheckSquare, Briefcase, Calendar, FileText, Building, Search, FileStack } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { NexusLogo } from '@/components/nexus-logo';
@@ -22,10 +22,24 @@ const facultyNavItems = [
     { href: '/faculty/reports', label: 'Accreditation Reports', icon: FileText },
 ];
 
+const employerNavItems = [
+    { href: '/employer/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { href: '/employer/postings', label: 'Job Postings', icon: Building },
+    { href: '/employer/search', label: 'Candidate Search', icon: Search },
+    { href: '/employer/applications', label: 'Applications', icon: FileStack },
+];
+
+
 export function MainNav() {
   const pathname = usePathname();
   const isFaculty = pathname.startsWith('/faculty');
-  const navItems = isFaculty ? facultyNavItems : studentNavItems;
+  const isEmployer = pathname.startsWith('/employer');
+  
+  const navItems = isFaculty 
+    ? facultyNavItems 
+    : isEmployer
+    ? employerNavItems
+    : studentNavItems;
 
   const renderNavLinks = (isMobile = false) => (
     <nav className={cn('flex flex-col gap-2', isMobile ? 'p-4' : 'px-2 pt-4')}>

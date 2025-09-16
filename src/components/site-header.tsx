@@ -13,6 +13,9 @@ import {
   Briefcase,
   Calendar,
   FileText,
+  Building,
+  Search,
+  FileStack,
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
@@ -45,10 +48,23 @@ const facultyNavItems = [
     { href: '/faculty/reports', label: 'Accreditation Reports', icon: FileText },
 ];
 
+const employerNavItems = [
+    { href: '/employer/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { href: '/employer/postings', label: 'Job Postings', icon: Building },
+    { href: '/employer/search', label: 'Candidate Search', icon: Search },
+    { href: '/employer/applications', label: 'Applications', icon: FileStack },
+];
+
 export function SiteHeader() {
     const pathname = usePathname();
     const isFaculty = pathname.startsWith('/faculty');
-    const navItems = isFaculty ? facultyNavItems : studentNavItems;
+    const isEmployer = pathname.startsWith('/employer');
+  
+    const navItems = isFaculty 
+        ? facultyNavItems 
+        : isEmployer
+        ? employerNavItems
+        : studentNavItems;
 
     const pageTitle = navItems.find(item => pathname.startsWith(item.href))?.label || 'Nexus';
 
