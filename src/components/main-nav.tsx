@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookUser, LayoutDashboard, ScrollText, BookMarked, Users, CheckSquare, Briefcase, Calendar } from 'lucide-react';
+import { BookUser, LayoutDashboard, ScrollText, BookMarked, Users, CheckSquare, Briefcase, Calendar, FileText } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { NexusLogo } from '@/components/nexus-logo';
@@ -19,6 +19,7 @@ const studentNavItems = [
 const facultyNavItems = [
     { href: '/faculty/dashboard', label: 'Faculty Dashboard', icon: Users },
     { href: '/faculty/verification', label: 'Verification Requests', icon: CheckSquare },
+    { href: '/faculty/reports', label: 'Accreditation Reports', icon: FileText },
 ];
 
 export function MainNav() {

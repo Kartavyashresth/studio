@@ -12,8 +12,9 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Button } from './ui/button';
-import { ChevronRight, ChevronsUpDown, BarChart, BrainCircuit, Dumbbell } from 'lucide-react';
+import { ChevronRight, ChevronsUpDown, BarChart, BrainCircuit, Dumbbell, BookUser, MessageSquare } from 'lucide-react';
 import {
   Collapsible,
   CollapsibleContent,
@@ -22,6 +23,11 @@ import {
 import { Badge } from './ui/badge';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
+import { Label } from './ui/label';
+import { Textarea } from './ui/textarea';
+import { useToast } from '@/hooks/use-toast';
+
 
 // A simple categorization for demo purposes
 const getSkillCategory = (skill: string) => {
@@ -32,6 +38,50 @@ const getSkillCategory = (skill: string) => {
   if (sportSkills.includes(skill)) return 'Sports';
   return 'Other';
 };
+
+function FeedbackDialog({ student }: { student: Student }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const { toast } = useToast();
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setIsOpen(false);
+        toast({
+            title: 'Feedback Sent!',
+            description: `Your feedback has been sent to ${student.name}.`,
+        });
+    };
+
+    return (
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild>
+                <Button variant="outline" size="sm">
+                    <MessageSquare className="mr-2" />
+                    Send Feedback
+                </Button>
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Provide Feedback for {student.name}</DialogTitle>
+                    <DialogDescription>
+                        Share your thoughts, suggestions, or mentorship notes. The student will be notified.
+                    </DialogDescription>
+                </DialogHeader>
+                <form onSubmit={handleSubmit}>
+                    <div className="grid gap-4 py-4">
+                        <div className="grid gap-2">
+                            <Label htmlFor="feedback-message">Feedback Message</Label>
+                            <Textarea id="feedback-message" placeholder="Type your message here..." required rows={6} />
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button type="submit">Send Message</Button>
+                    </DialogFooter>
+                </form>
+            </DialogContent>
+        </Dialog>
+    );
+}
 
 function StudentRow({ student }: { student: Student }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,8 +103,8 @@ function StudentRow({ student }: { student: Student }) {
 
   return (
     <Collapsible asChild open={isOpen} onOpenChange={setIsOpen}>
-        <tbody className={cn(isOpen && 'border-b')}>
-            <TableRow className="cursor-pointer">
+        <tbody className={cn(isOpen && 'border-b-2 border-primary/20')}>
+            <TableRow className="cursor-pointer bg-card hover:bg-muted/50" onClick={() => setIsOpen(!isOpen)}>
               <TableCell>
                 <div className="flex items-center gap-3">
                   <Image
@@ -88,29 +138,41 @@ function StudentRow({ student }: { student: Student }) {
               </TableCell>
             </TableRow>
             <CollapsibleContent asChild>
-              <tr className="bg-muted/50">
+              <tr className="bg-muted/30">
                 <TableCell colSpan={5} className="p-0">
-                    <div className="p-6">
-                        <h4 className="font-semibold text-lg mb-4">Extracurricular Skills</h4>
-                        {categorizedSkills && Object.keys(categorizedSkills).length > 0 ? (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {Object.entries(categorizedSkills).map(([category, skills]) => (
-                                    <div key={category}>
-                                        <div className="flex items-center gap-2 mb-2">
-                                            {categoryIcons[category]}
-                                            <h5 className="font-semibold">{category}</h5>
+                    <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div className="lg:col-span-2">
+                            <h4 className="font-semibold text-base mb-4">Extracurricular Skills</h4>
+                            {categorizedSkills && Object.keys(categorizedSkills).length > 0 ? (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    {Object.entries(categorizedSkills).map(([category, skills]) => (
+                                        <div key={category}>
+                                            <div className="flex items-center gap-2 mb-2">
+                                                {categoryIcons[category]}
+                                                <h5 className="font-semibold">{category}</h5>
+                                            </div>
+                                            <div className="flex flex-wrap gap-2">
+                                                {skills.map(skill => (
+                                                    <Badge key={skill} variant="secondary">{skill}</Badge>
+                                                ))}
+                                            </div>
                                         </div>
-                                        <div className="flex flex-wrap gap-2">
-                                            {skills.map(skill => (
-                                                <Badge key={skill} variant="secondary">{skill}</Badge>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <p className="text-muted-foreground text-sm">No specific skills listed for approved activities.</p>
-                        )}
+                                    ))}
+                                </div>
+                            ) : (
+                                <p className="text-muted-foreground text-sm">No specific skills listed for approved activities.</p>
+                            )}
+                        </div>
+                        <div className="lg:col-span-1 lg:border-l lg:pl-6 flex flex-col justify-center gap-3">
+                            <h4 className="font-semibold text-base">Actions</h4>
+                            <Button asChild variant="outline" size="sm">
+                                <Link href="/portfolio">
+                                    <BookUser className="mr-2" />
+                                    View Portfolio
+                                </Link>
+                            </Button>
+                            <FeedbackDialog student={student} />
+                        </div>
                     </div>
                 </TableCell>
               </tr>

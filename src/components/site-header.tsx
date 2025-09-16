@@ -12,6 +12,7 @@ import {
   CheckSquare,
   Briefcase,
   Calendar,
+  FileText,
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
@@ -41,6 +42,7 @@ const studentNavItems = [
 const facultyNavItems = [
     { href: '/faculty/dashboard', label: 'Faculty Dashboard', icon: Users },
     { href: '/faculty/verification', label: 'Verification Requests', icon: CheckSquare },
+    { href: '/faculty/reports', label: 'Accreditation Reports', icon: FileText },
 ];
 
 export function SiteHeader() {
