@@ -3,6 +3,7 @@
 import { useState, useRef, type FormEvent } from 'react';
 import {
   Dialog,
+  DialogTrigger,
   DialogContent,
   DialogDescription,
   DialogHeader,
