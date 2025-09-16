@@ -16,6 +16,10 @@ import {
   Building,
   Search,
   FileStack,
+  UserCog, 
+  Cog, 
+  BarChart, 
+  UserPlus
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
@@ -55,12 +59,23 @@ const employerNavItems = [
     { href: '/employer/applications', label: 'Applications', icon: FileStack },
 ];
 
+const adminNavItems = [
+    { href: '/institute-admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { href: '/institute-admin/faculty-management', label: 'Faculty Management', icon: UserPlus },
+    { href: '/institute-admin/user-management', label: 'User Management', icon: UserCog },
+    { href: '/institute-admin/system-configuration', label: 'System Configuration', icon: Cog },
+    { href: '/institute-admin/reports', label: 'Data & Reports', icon: BarChart },
+];
+
 export function SiteHeader() {
     const pathname = usePathname();
     const isFaculty = pathname.startsWith('/faculty');
     const isEmployer = pathname.startsWith('/employer');
+    const isAdmin = pathname.startsWith('/institute-admin');
   
-    const navItems = isFaculty 
+    const navItems = isAdmin
+        ? adminNavItems
+        : isFaculty 
         ? facultyNavItems 
         : isEmployer
         ? employerNavItems

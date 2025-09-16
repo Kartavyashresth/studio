@@ -18,6 +18,21 @@ export const facultyUser: Faculty = {
     department: 'Computer Science',
 };
 
+export const registeredFaculty: Faculty[] = [
+    {
+        name: 'Dr. Alan Grant',
+        email: 'alan.g@university.edu',
+        avatarUrl: 'https://picsum.photos/seed/alan-grant/100/100',
+        department: 'Computer Science',
+    },
+     {
+        name: 'Dr. Ellie Sattler',
+        email: 'ellie.s@university.edu',
+        avatarUrl: 'https://picsum.photos/seed/ellie-sattler/100/100',
+        department: 'Paleobotany',
+    }
+];
+
 export const academicStats: AcademicStats = {
   gpa: 3.8,
   attendance: 92,

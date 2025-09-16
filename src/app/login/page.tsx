@@ -9,10 +9,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { LogIn } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { registeredFaculty } from '@/lib/data';
 
 export default function LoginPage() {
   const router = useRouter();
   const [role, setRole] = useState('student');
+  const { toast } = useToast();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -21,13 +24,28 @@ export default function LoginPage() {
     const lastName = formData.get('lastName') as string;
     const fullName = `${firstName} ${lastName}`.trim();
 
+    if (role === 'faculty') {
+      const isRegistered = registeredFaculty.some(faculty => faculty.name.toLowerCase() === fullName.toLowerCase());
+      if (!isRegistered) {
+        toast({
+          variant: 'destructive',
+          title: 'Login Failed',
+          description: 'This faculty member is not registered. Please contact an administrator.',
+        });
+        return;
+      }
+    }
+
     const urlName = encodeURIComponent(fullName);
     
     if (role === 'employer') {
         router.push(`/employer/dashboard?name=${urlName}`);
     } else if (role === 'faculty') {
       router.push(`/faculty/dashboard?name=${urlName}`);
-    } else {
+    } else if (role === 'institute_admin') {
+      router.push(`/institute-admin/dashboard?name=${urlName}`);
+    }
+    else {
       router.push(`/dashboard?name=${urlName}`);
     }
   };
@@ -56,7 +74,6 @@ export default function LoginPage() {
                                     <SelectItem value="faculty">Faculty</SelectItem>
                                     <SelectItem value="employer">Employer</SelectItem>
                                     <SelectItem value="institute_admin">Institute Admin</SelectItem>
-                                    <SelectItem value="admin">Admin</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
