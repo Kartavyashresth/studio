@@ -65,3 +65,10 @@ export type CollegeEvent = {
   imageUrl: string;
   tags: string[];
 };
+
+export type RegisteredUser = {
+    name: string;
+    email: string;
+    password: string; // In a real app, this should be a hash
+    role: 'student' | 'faculty' | 'employer' | 'institute_admin';
+};

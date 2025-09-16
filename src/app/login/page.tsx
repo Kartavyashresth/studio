@@ -2,51 +2,52 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { NexusLogo } from '@/components/nexus-logo';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { LogIn } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { registeredFaculty } from '@/lib/data';
+import { allUsers } from '@/lib/users';
 
 export default function LoginPage() {
   const router = useRouter();
-  const [role, setRole] = useState('student');
   const { toast } = useToast();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const firstName = formData.get('firstName') as string;
-    const lastName = formData.get('lastName') as string;
-    const fullName = `${firstName} ${lastName}`.trim();
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
 
-    if (role === 'faculty') {
-      const isRegistered = registeredFaculty.some(faculty => faculty.name.toLowerCase() === fullName.toLowerCase());
-      if (!isRegistered) {
-        toast({
-          variant: 'destructive',
-          title: 'Login Failed',
-          description: 'This faculty member is not registered. Please contact an administrator.',
-        });
-        return;
-      }
+    const user = allUsers.find(u => u.email === email && u.password === password);
+
+    if (!user) {
+      toast({
+        variant: 'destructive',
+        title: 'Login Failed',
+        description: 'Invalid email or password. Please try again.',
+      });
+      return;
     }
-
-    const urlName = encodeURIComponent(fullName);
     
-    if (role === 'employer') {
+    const urlName = encodeURIComponent(user.name);
+
+    switch (user.role) {
+      case 'employer':
         router.push(`/employer/dashboard?name=${urlName}`);
-    } else if (role === 'faculty') {
-      router.push(`/faculty/dashboard?name=${urlName}`);
-    } else if (role === 'institute_admin') {
-      router.push(`/institute-admin/dashboard?name=${urlName}`);
-    }
-    else {
-      router.push(`/dashboard?name=${urlName}`);
+        break;
+      case 'faculty':
+        router.push(`/faculty/dashboard?name=${urlName}`);
+        break;
+      case 'institute_admin':
+        router.push(`/institute-admin/dashboard?name=${urlName}`);
+        break;
+      default:
+        router.push(`/dashboard?name=${urlName}`);
+        break;
     }
   };
 
@@ -59,41 +60,17 @@ export default function LoginPage() {
                         <NexusLogo className="h-12 w-12" />
                     </div>
                     <CardTitle className="text-3xl font-headline">Welcome to Nexus</CardTitle>
-                    <CardDescription>Select your role to sign in to your account</CardDescription>
+                    <CardDescription>Sign in to your account to continue</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <form className="space-y-4" onSubmit={handleSubmit}>
-                         <div className="space-y-2">
-                            <Label htmlFor="role">Role</Label>
-                            <Select name="role" required value={role} onValueChange={setRole}>
-                                <SelectTrigger id="role">
-                                    <SelectValue placeholder="Select your role" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="student">Student</SelectItem>
-                                    <SelectItem value="faculty">Faculty</SelectItem>
-                                    <SelectItem value="employer">Employer</SelectItem>
-                                    <SelectItem value="institute_admin">Institute Admin</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                                <Label htmlFor="firstName">First Name</Label>
-                                <Input id="firstName" name="firstName" placeholder="John" required />
-                            </div>
-                             <div className="space-y-2">
-                                <Label htmlFor="lastName">Last Name</Label>
-                                <Input id="lastName" name="lastName" placeholder="Doe" required />
-                            </div>
-                        </div>
                         <div className="space-y-2">
                             <Label htmlFor="email">Email</Label>
-                            <Input id="email" type="email" placeholder="name@example.com" required />
+                            <Input id="email" name="email" type="email" placeholder="name@example.com" required />
                         </div>
                          <div className="space-y-2">
                             <Label htmlFor="password">Password</Label>
-                            <Input id="password" type="password" required />
+                            <Input id="password" name="password" type="password" required />
                         </div>
                         <Button type="submit" className="w-full">
                             <LogIn className="mr-2 h-4 w-4" />
@@ -101,6 +78,14 @@ export default function LoginPage() {
                         </Button>
                     </form>
                 </CardContent>
+                <CardFooter className="flex justify-center text-sm">
+                    <p className="text-muted-foreground">
+                        Don&apos;t have an account?{' '}
+                        <Link href="/register" className="font-medium text-primary hover:underline">
+                            Sign Up
+                        </Link>
+                    </p>
+                </CardFooter>
             </Card>
         </div>
     </main>
