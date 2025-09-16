@@ -30,3 +30,8 @@ export type AcademicRecord = {
   semester: string;
   grade: string;
 };
+
+export type Student = User & {
+    stats: AcademicStats;
+    activities: Activity[];
+}

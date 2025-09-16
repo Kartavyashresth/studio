@@ -8,6 +8,7 @@ import {
   ScrollText,
   BookUser,
   BookMarked,
+  Users,
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
@@ -30,11 +31,12 @@ const navItems = [
   { href: '/activities', label: 'Activities', icon: ScrollText },
   { href: '/records', label: 'Academic Records', icon: BookMarked },
   { href: '/portfolio', label: 'Portfolio', icon: BookUser },
+  { href: '/faculty/dashboard', label: 'Faculty Dashboard', icon: Users },
 ];
 
 export function SiteHeader() {
     const pathname = usePathname();
-    const pageTitle = navItems.find(item => item.href === pathname)?.label || 'Nexus';
+    const pageTitle = navItems.find(item => pathname.startsWith(item.href))?.label || 'Nexus';
 
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6 sticky top-0 z-30 bg-background/95 backdrop-blur-sm">
@@ -63,7 +65,7 @@ export function SiteHeader() {
                 className={cn(
                   'flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground transition-all hover:text-primary',
                   {
-                    'bg-muted text-primary': pathname === href,
+                    'bg-muted text-primary': pathname.startsWith(href),
                   }
                 )}
               >

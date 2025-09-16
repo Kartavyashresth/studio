@@ -1,4 +1,4 @@
-import type { User, Activity, AcademicStats, AcademicRecord } from '@/lib/types';
+import type { User, Activity, AcademicStats, AcademicRecord, Student } from '@/lib/types';
 import { PlaceHolderImages } from './placeholder-images';
 
 const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar');
@@ -79,3 +79,50 @@ export const academicRecords: AcademicRecord[] = [
   { id: 'rec003', courseName: 'Database Management Systems', courseCode: 'CS201', semester: 'Fall 2023', grade: 'B+' },
   { id: 'rec004', courseName: 'Operating Systems', courseCode: 'CS202', semester: 'Spring 2024', grade: 'A' },
 ];
+
+export const students: Student[] = [
+  {
+    ...user,
+    stats: academicStats,
+    activities: activities,
+  },
+  {
+    name: 'Jane Smith',
+    email: 'jane.smith@university.edu',
+    avatarUrl: 'https://picsum.photos/seed/jane-smith/100/100',
+    program: 'B.A. in Digital Media',
+    studentId: 'STU654321',
+    stats: {
+        gpa: 3.5,
+        attendance: 95,
+        credits: 78
+    },
+    activities: [],
+  },
+  {
+    name: 'Robert Johnson',
+    email: 'robert.j@university.edu',
+    avatarUrl: 'https://picsum.photos/seed/robert-j/100/100',
+    program: 'B.S. in Mechanical Engineering',
+    studentId: 'STU789012',
+    stats: {
+        gpa: 3.9,
+        attendance: 88,
+        credits: 92
+    },
+    activities: [],
+  },
+  {
+    name: 'Emily White',
+    email: 'emily.w@university.edu',
+    avatarUrl: 'https://picsum.photos/seed/emily-w/100/100',
+    program: 'B.Tech in Computer Science',
+    studentId: 'STU345678',
+    stats: {
+        gpa: 3.2,
+        attendance: 91,
+        credits: 75
+    },
+    activities: [],
+  }
+]

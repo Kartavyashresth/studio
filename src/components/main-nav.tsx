@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookUser, LayoutDashboard, ScrollText, BookMarked } from 'lucide-react';
+import { BookUser, LayoutDashboard, ScrollText, BookMarked, Users } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { NexusLogo } from '@/components/nexus-logo';
@@ -12,6 +12,7 @@ const navItems = [
   { href: '/activities', label: 'Activities', icon: ScrollText },
   { href: '/records', label: 'Academic Records', icon: BookMarked },
   { href: '/portfolio', label: 'Portfolio', icon: BookUser },
+  { href: '/faculty/dashboard', label: 'Faculty Dashboard', icon: Users },
 ];
 
 export function MainNav() {
@@ -26,7 +27,7 @@ export function MainNav() {
           className={cn(
             'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary',
             {
-              'bg-muted text-primary': pathname === href,
+              'bg-muted text-primary': pathname.startsWith(href),
             }
           )}
         >
