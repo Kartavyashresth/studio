@@ -35,10 +35,15 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal
 } from '@/components/ui/dropdown-menu';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { NexusLogo } from './nexus-logo';
+import { ThemeToggle } from './theme-toggle';
 
 const studentNavItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -110,7 +115,7 @@ export function SiteHeader() {
             localStorage.setItem(AVATAR_STORAGE_KEY, newAvatarUrl);
           }
         };
-        reader.readAsDataURL(file);
+        reader.readDataURL(file);
       }
     };
 
@@ -208,6 +213,16 @@ export function SiteHeader() {
           </DropdownMenuItem>
           <DropdownMenuItem onSelect={handleProfileClick}>Profile</DropdownMenuItem>
           <DropdownMenuItem onSelect={() => router.push('/settings')}>Settings</DropdownMenuItem>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>
+                <span>Theme</span>
+            </DropdownMenuSubTrigger>
+            <DropdownMenuPortal>
+                <DropdownMenuSubContent>
+                    <ThemeToggle />
+                </DropdownMenuSubContent>
+            </DropdownMenuPortal>
+          </DropdownMenuSub>
           <DropdownMenuSeparator />
           <DropdownMenuItem onSelect={handleLogout}>
             <LogOut className="mr-2 h-4 w-4" />
