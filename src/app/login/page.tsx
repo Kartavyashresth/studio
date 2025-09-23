@@ -28,15 +28,14 @@ export default function LoginPage() {
     const firstName = formData.get('firstName') as string;
     const lastName = formData.get('lastName') as string;
     const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
 
-    const user = allUsers.find(u => u.email === email && u.password === password);
+    const user = allUsers.find(u => u.email === email);
 
     if (!user) {
       toast({
         variant: 'destructive',
         title: 'Login Failed',
-        description: 'Invalid email or password. Please try again.',
+        description: 'Invalid email. Please try again.',
       });
       return;
     }

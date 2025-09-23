@@ -22,7 +22,6 @@ export default function RegisterPage() {
     const firstName = formData.get('firstName') as string;
     const lastName = formData.get('lastName') as string;
     const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
     const selectedRole = formData.get('role') as 'student' | 'faculty' | 'employer' | 'institute_admin';
 
     const existingUser = allUsers.find(u => u.email === email);
@@ -35,12 +34,9 @@ export default function RegisterPage() {
         return;
     }
     
-    // In a real app, you would hash the password here.
-    // For this demo, we store it as is.
     addUser({
         name: `${firstName} ${lastName}`,
         email,
-        password,
         role: selectedRole,
     });
 
