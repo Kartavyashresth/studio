@@ -103,8 +103,8 @@ function StudentRow({ student }: { student: Student }) {
 
   return (
     <Collapsible asChild open={isOpen} onOpenChange={setIsOpen}>
-        <tbody className={cn(isOpen && 'border-b-2 border-primary/20')}>
-            <TableRow className="cursor-pointer bg-card hover:bg-muted/50" onClick={() => setIsOpen(!isOpen)}>
+        <tbody className={cn('transition-colors', isOpen ? 'border-b-2 border-primary/20 bg-muted/20' : 'border-b')}>
+            <TableRow className="cursor-pointer bg-transparent hover:bg-muted/50" onClick={() => setIsOpen(!isOpen)}>
               <TableCell>
                 <div className="flex items-center gap-3">
                   <Image
@@ -145,32 +145,34 @@ function StudentRow({ student }: { student: Student }) {
             <CollapsibleContent asChild>
               <tr className="bg-muted/30">
                 <TableCell colSpan={5} className="p-0">
-                    <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <div className="lg:col-span-2">
-                            <h4 className="font-semibold text-base mb-4">Extracurricular Skills</h4>
-                            {categorizedSkills && Object.keys(categorizedSkills).length > 0 ? (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                    {Object.entries(categorizedSkills).map(([category, skills]) => (
-                                        <div key={category}>
-                                            <div className="flex items-center gap-2 mb-2">
-                                                {categoryIcons[category]}
-                                                <h5 className="font-semibold">{category}</h5>
+                    <div className="overflow-hidden transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                        <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <div className="lg:col-span-2">
+                                <h4 className="font-semibold text-base mb-4">Extracurricular Skills</h4>
+                                {categorizedSkills && Object.keys(categorizedSkills).length > 0 ? (
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                        {Object.entries(categorizedSkills).map(([category, skills]) => (
+                                            <div key={category}>
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    {categoryIcons[category]}
+                                                    <h5 className="font-semibold">{category}</h5>
+                                                </div>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {skills.map(skill => (
+                                                        <Badge key={skill} variant="secondary">{skill}</Badge>
+                                                    ))}
+                                                </div>
                                             </div>
-                                            <div className="flex flex-wrap gap-2">
-                                                {skills.map(skill => (
-                                                    <Badge key={skill} variant="secondary">{skill}</Badge>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <p className="text-muted-foreground text-sm">No specific skills listed for approved activities.</p>
-                            )}
-                        </div>
-                        <div className="lg:col-span-1 lg:border-l lg:pl-6 flex flex-col justify-center gap-3">
-                            <h4 className="font-semibold text-base">Actions</h4>
-                            <FeedbackDialog student={student} />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p className="text-muted-foreground text-sm">No specific skills listed for approved activities.</p>
+                                )}
+                            </div>
+                            <div className="lg:col-span-1 lg:border-l lg:pl-6 flex flex-col justify-center gap-3">
+                                <h4 className="font-semibold text-base">Actions</h4>
+                                <FeedbackDialog student={student} />
+                            </div>
                         </div>
                     </div>
                 </TableCell>
