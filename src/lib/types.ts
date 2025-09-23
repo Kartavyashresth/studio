@@ -71,3 +71,12 @@ export type RegisteredUser = {
     email: string;
     role: 'student' | 'faculty' | 'employer' | 'institute_admin';
 };
+
+export type Course = {
+  id: string;
+  name: string;
+  instructor: string;
+  progress: number;
+  imageUrl: string;
+  category: string;
+};

@@ -1,4 +1,4 @@
-import type { User, Activity, AcademicStats, AcademicRecord, Student, Faculty } from '@/lib/types';
+import type { User, Activity, AcademicStats, AcademicRecord, Student, Faculty, Course } from '@/lib/types';
 import { PlaceHolderImages } from './placeholder-images';
 
 const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar');
@@ -118,6 +118,13 @@ export const academicRecords: AcademicRecord[] = [
   { id: 'rec002', courseName: 'Data Structures', courseCode: 'CS102', semester: 'Spring 2023', grade: 'A-' },
   { id: 'rec003', courseName: 'Database Management Systems', courseCode: 'CS201', semester: 'Fall 2023', grade: 'B+' },
   { id: 'rec004', courseName: 'Operating Systems', courseCode: 'CS202', semester: 'Spring 2024', grade: 'A' },
+];
+
+export const courses: Course[] = [
+    { id: 'crs001', name: 'Advanced Algorithms', instructor: 'Dr. Sumit Kumar', progress: 75, imageUrl: 'https://picsum.photos/seed/algorithms/600/400', category: 'Computer Science' },
+    { id: 'crs002', name: 'Machine Learning Foundations', instructor: 'Dr. Nivedita Singh', progress: 45, imageUrl: 'https://picsum.photos/seed/ml/600/400', category: 'Computer Science' },
+    { id: 'crs003', name: 'Thermodynamics', instructor: 'Dr. Pradeep Srivastav', progress: 90, imageUrl: 'https://picsum.photos/seed/thermo/600/400', category: 'Mechanical Engineering' },
+    { id: 'crs004', name: 'Digital Marketing', instructor: 'Prof. Sneha Roy', progress: 60, imageUrl: 'https://picsum.photos/seed/marketing/600/400', category: 'Business' },
 ];
 
 const allSkills = (activities: Activity[]) => {
