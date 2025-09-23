@@ -4,10 +4,16 @@ import { usePathname } from 'next/navigation';
 import { Card } from '@/components/ui/card';
 import { NexusLogo } from '@/components/nexus-logo';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 export function AuthLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isLogin = pathname === '/login';
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-muted/40 p-4 perspective">
@@ -15,6 +21,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
         <div className="mb-4 flex justify-center">
           <NexusLogo className="h-12 w-12" />
         </div>
+        {isClient && (
         <AnimatePresence mode="wait">
             <motion.div
                 key={pathname}
@@ -29,6 +36,12 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
                 </Card>
             </motion.div>
         </AnimatePresence>
+        )}
+        {!isClient && (
+            <Card>
+                {children}
+            </Card>
+        )}
       </div>
     </main>
   );
