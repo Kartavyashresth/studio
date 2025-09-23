@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useRef, type ChangeEvent } from 'react';
+import { useState, useRef, type ChangeEvent, useEffect } from 'react';
 import {
   Menu,
   LayoutDashboard,
@@ -21,9 +21,10 @@ import {
   Cog, 
   BarChart, 
   UserPlus,
-  Camera
+  Camera,
+  LogOut
 } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { user as staticUser } from '@/lib/data';
 import { Button } from '@/components/ui/button';
@@ -69,10 +70,20 @@ const adminNavItems = [
     { href: '/institute-admin/reports', label: 'Data & Reports', icon: BarChart },
 ];
 
+const AVATAR_STORAGE_KEY = 'nexus-user-avatar';
+
 export function SiteHeader() {
     const pathname = usePathname();
+    const router = useRouter();
     const [avatarUrl, setAvatarUrl] = useState(staticUser.avatarUrl);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        const storedAvatar = localStorage.getItem(AVATAR_STORAGE_KEY);
+        if (storedAvatar) {
+            setAvatarUrl(storedAvatar);
+        }
+    }, []);
 
     const isFaculty = pathname.startsWith('/faculty');
     const isEmployer = pathname.startsWith('/employer');
@@ -94,7 +105,9 @@ export function SiteHeader() {
         const reader = new FileReader();
         reader.onload = (e) => {
           if (e.target?.result) {
-            setAvatarUrl(e.target.result as string);
+            const newAvatarUrl = e.target.result as string;
+            setAvatarUrl(newAvatarUrl);
+            localStorage.setItem(AVATAR_STORAGE_KEY, newAvatarUrl);
           }
         };
         reader.readAsDataURL(file);
@@ -104,6 +117,10 @@ export function SiteHeader() {
     const handleAvatarClick = () => {
       fileInputRef.current?.click();
     };
+    
+    const handleLogout = () => {
+        router.push('/login');
+    }
 
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6 sticky top-0 z-30 bg-background/95 backdrop-blur-sm">
@@ -180,7 +197,10 @@ export function SiteHeader() {
           <DropdownMenuItem>Profile</DropdownMenuItem>
           <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
+          <DropdownMenuItem onSelect={handleLogout}>
+            <LogOut className="mr-2 h-4 w-4" />
+            <span>Logout</span>
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>
