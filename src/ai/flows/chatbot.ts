@@ -11,21 +11,21 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-const connectWithFacultyTool = ai.defineTool(
+const connectWithAdminTool = ai.defineTool(
     {
-      name: 'connectWithFaculty',
-      description: 'Use this tool when the user wants to speak to a faculty member, advisor, or human.',
+      name: 'connectWithAdmin',
+      description: 'Use this tool when the user wants to speak to a faculty member, advisor, or human admin.',
       inputSchema: z.object({
-        topic: z.string().describe('The topic or reason the user wants to connect with faculty.'),
+        topic: z.string().describe('The topic or reason the user wants to connect with an admin.'),
         conversationHistory: z.string().describe('The recent conversation history to provide context.'),
       }),
       outputSchema: z.string(),
     },
     async ({ topic, conversationHistory }) => {
-      console.log(`FACULTY CONNECTION REQUEST:
+      console.log(`INSTITUTE ADMIN CONNECTION REQUEST:
       Topic: ${topic}
       History: ${conversationHistory}`);
-      return 'I have passed your message along to the faculty. They will get back to you shortly.';
+      return 'I have passed your message along to the Institute Admin. They will get back to you shortly.';
     }
 );
 
@@ -44,10 +44,10 @@ export type ChatbotOutput = z.infer<typeof ChatbotOutputSchema>;
 
 const prompt = ai.definePrompt({
     name: 'chatbotPrompt',
-    tools: [connectWithFacultyTool],
+    tools: [connectWithAdminTool],
     prompt: `You are NexusBot, a friendly and helpful AI assistant for students at Nexus University. Your goal is to answer student questions and provide assistance.
 
-    If the user indicates they want to speak to a human, faculty member, or advisor, use the \`connectWithFaculty\` tool to escalate their request.
+    If the user indicates they want to speak to a human, faculty member, or advisor, use the \`connectWithAdmin\` tool to escalate their request.
 
     Keep your answers concise and helpful.
     `,
