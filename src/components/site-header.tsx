@@ -194,8 +194,8 @@ export function SiteHeader() {
             <Camera className="mr-2 h-4 w-4" />
             <span>Change Picture</span>
           </DropdownMenuItem>
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
+          <DropdownMenuItem onSelect={() => router.push('/portfolio')}>Profile</DropdownMenuItem>
+          <DropdownMenuItem onSelect={() => router.push('/settings')}>Settings</DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onSelect={handleLogout}>
             <LogOut className="mr-2 h-4 w-4" />
