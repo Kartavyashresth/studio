@@ -121,6 +121,18 @@ export function SiteHeader() {
     const handleLogout = () => {
         router.push('/login');
     }
+    
+    const handleProfileClick = () => {
+        if (isFaculty) {
+            router.push('/faculty/dashboard');
+        } else if (isEmployer) {
+            router.push('/employer/dashboard');
+        } else if (isAdmin) {
+            router.push('/institute-admin/dashboard');
+        } else {
+            router.push('/portfolio');
+        }
+    };
 
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6 sticky top-0 z-30 bg-background/95 backdrop-blur-sm">
@@ -194,7 +206,7 @@ export function SiteHeader() {
             <Camera className="mr-2 h-4 w-4" />
             <span>Change Picture</span>
           </DropdownMenuItem>
-          <DropdownMenuItem onSelect={() => router.push('/portfolio')}>Profile</DropdownMenuItem>
+          <DropdownMenuItem onSelect={handleProfileClick}>Profile</DropdownMenuItem>
           <DropdownMenuItem onSelect={() => router.push('/settings')}>Settings</DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onSelect={handleLogout}>

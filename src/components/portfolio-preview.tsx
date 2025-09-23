@@ -3,10 +3,10 @@
 import Image from 'next/image';
 import { user as staticUser, activities } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
-import { Briefcase, Calendar, Presentation, Trophy, Camera } from 'lucide-react';
+import { Briefcase, Calendar, Presentation, Trophy, Camera, Pencil, Save } from 'lucide-react';
 import { useState, useRef, type ChangeEvent } from 'react';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 
 // Custom Certificate icon as it is not in lucide-react
@@ -35,6 +35,7 @@ const approvedActivities = activities.filter(a => a.status === 'Approved');
 
 export function PortfolioPreview() {
   const [user, setUser] = useState(staticUser);
+  const [isEditing, setIsEditing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const groupActivities = (
@@ -70,6 +71,10 @@ export function PortfolioPreview() {
     }
   };
 
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUser(prev => ({...prev, [name]: value}));
+  };
 
   return (
     <Card className="overflow-hidden">
@@ -102,10 +107,26 @@ export function PortfolioPreview() {
                         accept="image/*"
                      />
                 </div>
+                <div className="flex-grow">
+                    {isEditing ? (
+                        <div className="space-y-2">
+                           <Input name="name" value={user.name} onChange={handleInputChange} className="text-3xl font-headline h-auto p-0 border-0 bg-transparent" />
+                           <Input name="program" value={user.program} onChange={handleInputChange} className="h-auto p-0 border-0 bg-transparent text-muted-foreground" />
+                           <Input name="email" value={user.email} onChange={handleInputChange} className="h-auto p-0 border-0 bg-transparent text-sm text-muted-foreground" />
+                        </div>
+                    ) : (
+                        <div>
+                            <h1 className="text-3xl font-headline">{user.name}</h1>
+                            <p className="text-muted-foreground">{user.program}</p>
+                            <p className="text-sm text-muted-foreground">{user.email}</p>
+                        </div>
+                    )}
+                </div>
                 <div>
-                    <h1 className="text-3xl font-headline">{user.name}</h1>
-                    <p className="text-muted-foreground">{user.program}</p>
-                    <p className="text-sm text-muted-foreground">{user.email}</p>
+                     <Button variant="outline" size="icon" onClick={() => setIsEditing(!isEditing)}>
+                        {isEditing ? <Save className="h-4 w-4" /> : <Pencil className="h-4 w-4" />}
+                        <span className="sr-only">{isEditing ? 'Save Changes' : 'Edit Profile'}</span>
+                    </Button>
                 </div>
             </div>
         </div>
