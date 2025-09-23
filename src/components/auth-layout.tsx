@@ -15,13 +15,25 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
     setIsClient(true);
   }, []);
 
+  if (!isClient) {
+    return (
+        <main className="flex min-h-screen flex-col items-center justify-center bg-muted/40 p-4">
+             <div className="w-full max-w-md">
+                <div className="mb-4 flex justify-center">
+                    <NexusLogo className="h-12 w-12" />
+                </div>
+                <Card>{children}</Card>
+            </div>
+        </main>
+    );
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-muted/40 p-4 perspective">
       <div className="w-full max-w-md">
         <div className="mb-4 flex justify-center">
           <NexusLogo className="h-12 w-12" />
         </div>
-        {isClient && (
         <AnimatePresence mode="wait">
             <motion.div
                 key={pathname}
@@ -36,12 +48,6 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
                 </Card>
             </motion.div>
         </AnimatePresence>
-        )}
-        {!isClient && (
-            <Card>
-                {children}
-            </Card>
-        )}
       </div>
     </main>
   );
