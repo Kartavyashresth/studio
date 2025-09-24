@@ -3,11 +3,12 @@
 import Image from 'next/image';
 import { user as staticUser, activities } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
-import { Briefcase, Calendar, Presentation, Trophy, Camera, Pencil, Save } from 'lucide-react';
+import { Briefcase, Calendar, Presentation, Trophy, Camera, Pencil, Save, BookOpen } from 'lucide-react';
 import { useState, useRef, type ChangeEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-
+import type { SectionVisibility } from '@/app/portfolio/page';
+import type { Activity } from '@/lib/types';
 
 // Custom Certificate icon as it is not in lucide-react
 const CustomCertificateIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -23,24 +24,29 @@ const CustomCertificateIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </svg>
 )
 
-const activityIcons = {
+const activityIcons: Record<Activity['type'], React.ReactElement> = {
     'Internship': <Briefcase className="h-5 w-5 text-primary" />,
     'MOOC': <CustomCertificateIcon className="h-5 w-5 text-primary" />,
     'Conference': <Presentation className="h-5 w-5 text-primary" />,
     'Seminar': <Presentation className="h-5 w-5 text-primary" />,
     'Extra-curricular': <Trophy className="h-5 w-5 text-primary" />,
+    'Workshop': <BookOpen className="h-5 w-5 text-primary" />,
 };
 
 const approvedActivities = activities.filter(a => a.status === 'Approved');
 
-export function PortfolioPreview() {
+interface PortfolioPreviewProps {
+  sectionVisibility: SectionVisibility;
+}
+
+export function PortfolioPreview({ sectionVisibility }: PortfolioPreviewProps) {
   const [user, setUser] = useState(staticUser);
   const [isEditing, setIsEditing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const groupActivities = (
     activities: typeof approvedActivities, 
-    key: 'type' | 'status'
+    key: 'type'
     ) => {
     return activities.reduce((acc, activity) => {
       const group = activity[key];
@@ -75,6 +81,26 @@ export function PortfolioPreview() {
     const { name, value } = e.target;
     setUser(prev => ({...prev, [name]: value}));
   };
+
+  const getSectionTitle = (type: Activity['type']) => {
+    if (type === 'Conference' || type === 'Seminar') {
+        return 'Conferences & Seminars';
+    }
+    if (type === 'MOOC') {
+        return 'Online Courses (MOOCs)';
+    }
+    return `${type}s`;
+  }
+  
+  const combinedActivities = Object.entries(activitiesByType).reduce((acc, [type, activities]) => {
+    const title = getSectionTitle(type as Activity['type']);
+    if (!acc[title]) {
+        acc[title] = { icon: activityIcons[type as Activity['type']], activities: [], type: type as Activity['type'] };
+    }
+    acc[title].activities.push(...activities);
+    return acc;
+  }, {} as Record<string, { icon: React.ReactElement; activities: Activity[], type: Activity['type'] }>);
+
 
   return (
     <Card className="overflow-hidden">
@@ -132,29 +158,33 @@ export function PortfolioPreview() {
         </div>
         
         <div className="p-8 space-y-8">
-            {Object.entries(activitiesByType).map(([type, activities]) => (
-                <section key={type}>
-                    <h2 className="text-2xl font-headline flex items-center gap-3 mb-4">
-                        {activityIcons[type as keyof typeof activityIcons]}
-                        {type}s
-                    </h2>
-                    <div className="space-y-4 border-l-2 border-primary/20 pl-6 relative">
-                        {activities.map((activity, index) => (
-                             <div key={activity.id} className="relative">
-                                <div className="absolute -left-[35px] top-1 h-4 w-4 rounded-full bg-primary border-2 border-background"></div>
-                                <h3 className="font-semibold">{activity.name}</h3>
-                                <p className="text-sm text-muted-foreground flex items-center gap-2">
-                                    <Calendar className="h-3 w-3" />
-                                    {new Date(activity.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
-                                </p>
-                                <p className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
-                                    Verified by: {activity.approver}
-                                </p>
-                             </div>
-                        ))}
-                    </div>
-                </section>
-            ))}
+            {Object.entries(combinedActivities).map(([title, { icon, activities, type }]) => {
+                if (!sectionVisibility[type as keyof SectionVisibility] && !(type === 'Seminar' && sectionVisibility['Conference'])) return null;
+
+                return (
+                    <section key={title}>
+                        <h2 className="text-2xl font-headline flex items-center gap-3 mb-4">
+                            {icon}
+                            {title}
+                        </h2>
+                        <div className="space-y-4 border-l-2 border-primary/20 pl-6 relative">
+                            {activities.map((activity) => (
+                                 <div key={activity.id} className="relative">
+                                    <div className="absolute -left-[35px] top-1 h-4 w-4 rounded-full bg-primary border-2 border-background"></div>
+                                    <h3 className="font-semibold">{activity.name}</h3>
+                                    <p className="text-sm text-muted-foreground flex items-center gap-2">
+                                        <Calendar className="h-3 w-3" />
+                                        {new Date(activity.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
+                                    </p>
+                                    <p className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
+                                        Verified by: {activity.approver}
+                                    </p>
+                                 </div>
+                            ))}
+                        </div>
+                    </section>
+                )
+            })}
         </div>
       </CardContent>
     </Card>

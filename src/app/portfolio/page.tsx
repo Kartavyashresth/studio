@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import { AppLayout } from '@/components/app-layout';
 import { PortfolioPreview } from '@/components/portfolio-preview';
 import { Button } from '@/components/ui/button';
@@ -6,7 +9,29 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Download, Share2 } from 'lucide-react';
 
+export type SectionVisibility = {
+  Internship: boolean;
+  MOOC: boolean;
+  Conference: boolean;
+  'Extra-curricular': boolean;
+  Seminar: boolean;
+  Workshop: boolean;
+};
+
 export default function PortfolioPage() {
+  const [visibility, setVisibility] = useState<SectionVisibility>({
+    Internship: true,
+    MOOC: true,
+    Conference: true,
+    Seminar: true,
+    'Extra-curricular': false,
+    Workshop: true,
+  });
+
+  const handleVisibilityChange = (section: keyof SectionVisibility, checked: boolean) => {
+    setVisibility(prev => ({ ...prev, [section]: checked }));
+  };
+
   return (
     <AppLayout>
       <div className="flex flex-col gap-8">
@@ -29,7 +54,7 @@ export default function PortfolioPage() {
 
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <PortfolioPreview />
+            <PortfolioPreview sectionVisibility={visibility} />
           </div>
           <div className="lg:col-span-1">
              <Card>
@@ -40,19 +65,38 @@ export default function PortfolioPage() {
                 <CardContent className="space-y-4">
                     <div className="flex items-center justify-between">
                         <Label htmlFor="show-internships">Internships</Label>
-                        <Switch id="show-internships" defaultChecked />
+                        <Switch 
+                            id="show-internships" 
+                            checked={visibility.Internship}
+                            onCheckedChange={(checked) => handleVisibilityChange('Internship', checked)}
+                        />
                     </div>
                      <div className="flex items-center justify-between">
                         <Label htmlFor="show-courses">Online Courses (MOOCs)</Label>
-                        <Switch id="show-courses" defaultChecked />
+                        <Switch 
+                            id="show-courses" 
+                            checked={visibility.MOOC}
+                            onCheckedChange={(checked) => handleVisibilityChange('MOOC', checked)}
+                        />
                     </div>
                      <div className="flex items-center justify-between">
                         <Label htmlFor="show-conferences">Conferences & Seminars</Label>
-                        <Switch id="show-conferences" defaultChecked />
+                        <Switch 
+                            id="show-conferences" 
+                            checked={visibility.Conference || visibility.Seminar}
+                            onCheckedChange={(checked) => {
+                                handleVisibilityChange('Conference', checked);
+                                handleVisibilityChange('Seminar', checked);
+                            }}
+                        />
                     </div>
                      <div className="flex items-center justify-between">
                         <Label htmlFor="show-extra">Extra-curriculars</Label>
-                        <Switch id="show-extra" />
+                        <Switch 
+                            id="show-extra" 
+                            checked={visibility['Extra-curricular']}
+                            onCheckedChange={(checked) => handleVisibilityChange('Extra-curricular', checked)}
+                        />
                     </div>
                 </CardContent>
              </Card>
