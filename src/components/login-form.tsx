@@ -43,7 +43,7 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
         router.push(`/employer/dashboard?name=${encodeURIComponent(fullName)}`);
         break;
       case 'faculty':
-        const facultyExists = registeredFaculty.some(f => f.name.toLowerCase() === fullName.toLowerCase());
+        const facultyExists = registeredFaculty.some(f => f.email.toLowerCase() === email.toLowerCase());
         if (!facultyExists) {
             toast({
                 variant: 'destructive',
