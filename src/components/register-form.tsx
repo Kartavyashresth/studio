@@ -24,6 +24,7 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
     const lastName = formData.get('lastName') as string;
     const email = formData.get('email') as string;
     const selectedRole = formData.get('role') as 'student' | 'faculty' | 'employer' | 'institute_admin';
+    const branch = formData.get('branch') as string;
 
     const existingUser = allUsers.find(u => u.email === email);
     if (existingUser) {
@@ -39,6 +40,7 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
         name: `${firstName} ${lastName}`,
         email,
         role: selectedRole,
+        branch: selectedRole === 'student' ? branch : undefined,
     });
 
     toast({
@@ -85,6 +87,21 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
               </SelectContent>
             </Select>
           </div>
+           {role === 'student' && (
+            <div className="space-y-2 text-left">
+              <Label htmlFor="branch">Branch</Label>
+              <Select name="branch" required>
+                <SelectTrigger id="branch">
+                  <SelectValue placeholder="Select your branch" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Computer Science">Computer Science</SelectItem>
+                  <SelectItem value="Mechanical Engineering">Mechanical Engineering</SelectItem>
+                  <SelectItem value="Digital Media">Digital Media</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          )}
           <Button type="submit" className="w-full">
             Sign Up
           </Button>

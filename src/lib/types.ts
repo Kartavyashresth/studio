@@ -11,12 +11,13 @@ export type Faculty = {
     email: string;
     avatarUrl: string;
     department: string;
+    branch?: string;
 };
 
 export type Activity = {
   id: string;
-  name: string;
-  type: 'Seminar' | 'Conference' | 'MOOC' | 'Internship' | 'Extra-curricular';
+  name:string;
+  type: 'Seminar' | 'Conference' | 'MOOC' | 'Internship' | 'Extra-curricular' | 'Workshop';
   date: string;
   status: 'Approved' | 'Pending' | 'Rejected';
   credits: number;
@@ -43,6 +44,7 @@ export type Student = User & {
     stats: AcademicStats;
     activities: Activity[];
     skills?: string[];
+    branch?: string;
 }
 
 export type Placement = {
@@ -70,6 +72,7 @@ export type RegisteredUser = {
     name: string;
     email: string;
     role: 'student' | 'faculty' | 'employer' | 'institute_admin';
+    branch?: string;
 };
 
 export type Course = {

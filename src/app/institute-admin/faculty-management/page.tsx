@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { registeredFaculty as initialFaculty } from '@/lib/data';
 import type { Faculty } from '@/lib/types';
@@ -23,13 +24,15 @@ export default function FacultyManagementPage() {
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
     const department = formData.get('department') as string;
+    const branch = formData.get('branch') as string;
 
-    if (!name || !email || !department) return;
+    if (!name || !email || !department || !branch) return;
 
     const newFaculty: Faculty = {
       name,
       email,
       department,
+      branch,
       avatarUrl: `https://picsum.photos/seed/${email}/100/100`, // Use email for a unique seed
     };
 
@@ -84,6 +87,20 @@ export default function FacultyManagementPage() {
                     <Label htmlFor="department">Department</Label>
                     <Input id="department" name="department" placeholder="Physics" required />
                   </div>
+                   <div className="space-y-2">
+                    <Label htmlFor="branch">Branch</Label>
+                    <Select name="branch" required>
+                        <SelectTrigger id="branch">
+                        <SelectValue placeholder="Select a branch" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="Computer Science">Computer Science</SelectItem>
+                            <SelectItem value="Mechanical Engineering">Mechanical Engineering</SelectItem>
+                            <SelectItem value="Digital Media">Digital Media</SelectItem>
+                            <SelectItem value="General">General</SelectItem>
+                        </SelectContent>
+                    </Select>
+                  </div>
                   <Button type="submit" className="w-full">
                     <PlusCircle className="mr-2" />
                     Register Faculty
@@ -102,7 +119,7 @@ export default function FacultyManagementPage() {
                         <TableHeader>
                             <TableRow>
                                 <TableHead>Name</TableHead>
-                                <TableHead className="hidden sm:table-cell">Department</TableHead>
+                                <TableHead className="hidden sm:table-cell">Branch</TableHead>
                                 <TableHead className="text-right"></TableHead>
                             </TableRow>
                         </TableHeader>
@@ -118,7 +135,7 @@ export default function FacultyManagementPage() {
                                             </div>
                                         </div>
                                     </TableCell>
-                                    <TableCell className="hidden sm:table-cell">{faculty.department}</TableCell>
+                                    <TableCell className="hidden sm:table-cell">{faculty.branch}</TableCell>
                                     <TableCell className="text-right">
                                         <Button variant="ghost" size="icon" className="text-destructive" onClick={() => handleRemoveFaculty(faculty.email)}>
                                             <Trash2 className="h-4 w-4" />

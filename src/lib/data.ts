@@ -16,6 +16,7 @@ export const facultyUser: Faculty = {
     email: 'pradeep@hodgecv',
     avatarUrl: 'https://picsum.photos/seed/alan-grant/100/100',
     department: 'Computer Science',
+    branch: 'Computer Science',
 };
 
 export const registeredFaculty: Faculty[] = [
@@ -24,12 +25,14 @@ export const registeredFaculty: Faculty[] = [
         email: 'pradeep@hodgecv',
         avatarUrl: 'https://picsum.photos/seed/alan-grant/100/100',
         department: 'Computer Science',
+        branch: 'Computer Science',
     },
      {
         name: 'nivedita singh',
         email: 'nivedita@assprofgecv',
         avatarUrl: 'https://picsum.photos/seed/ellie-sattler/100/100',
         department: 'Paleobotany',
+        branch: 'General',
     }
 ];
 
@@ -138,6 +141,7 @@ export const students: Student[] = [
     stats: academicStats,
     activities: activities,
     skills: allSkills(activities),
+    branch: 'Computer Science',
   },
   {
     name: 'amit singh',
@@ -155,6 +159,7 @@ export const students: Student[] = [
         { id: 'act011', name: 'Short Film Project', type: 'Extra-curricular', date: '2024-03-01', status: 'Pending', credits: 7, skills: ['Video Editing', 'Storytelling'], documentUrl: 'https://picsum.photos/seed/doc-act011/800/1100' }
     ],
     skills: ['Photography', 'Adobe Photoshop', 'Graphic Design'],
+    branch: 'Digital Media',
   },
   {
     name: 'rajneesh yadav',
@@ -171,6 +176,7 @@ export const students: Student[] = [
         { id: 'act009', name: 'Robotics Competition', type: 'Extra-curricular', date: '2024-02-15', status: 'Approved', credits: 6, skills: ['Robotics', 'CAD', 'Problem Solving'] }
     ],
     skills: ['Robotics', 'CAD', 'Problem Solving', 'Leadership'],
+    branch: 'Mechanical Engineering',
   },
   {
     name: 'sneha roy',
@@ -188,5 +194,6 @@ export const students: Student[] = [
         { id: 'act012', name: 'Hackathon Participation', type: 'Conference', date: '2024-04-12', status: 'Pending', credits: 5, skills: ['Java', 'Problem Solving'], documentUrl: 'https://picsum.photos/seed/doc-act012/800/1100' }
     ],
     skills: ['Public Speaking', 'Critical Thinking', 'Leadership', 'Java'],
+    branch: 'Computer Science',
   }
 ]
