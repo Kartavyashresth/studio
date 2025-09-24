@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookUser, LayoutDashboard, ScrollText, BookMarked, Users, CheckSquare, Briefcase, Calendar, FileText, Building, Search, FileStack, UserCog, Cog, BarChart, UserPlus, GraduationCap } from 'lucide-react';
+import { BookUser, LayoutDashboard, ScrollText, BookMarked, Users, CheckSquare, Briefcase, Calendar, FileText, Building, Search, FileStack, UserCog, Cog, BarChart, UserPlus, GraduationCap, Percent } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { NexusLogo } from '@/components/nexus-logo';
@@ -11,6 +11,7 @@ const studentNavItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/activities', label: 'Activities', icon: ScrollText },
   { href: '/records', label: 'Academic Records', icon: BookMarked },
+  { href: '/attendance', label: 'Attendance', icon: Percent },
   { href: '/courses', label: 'Courses', icon: GraduationCap },
   { href: '/portfolio', label: 'Portfolio', icon: BookUser },
   { href: '/placements', label: 'Placements', icon: Briefcase },

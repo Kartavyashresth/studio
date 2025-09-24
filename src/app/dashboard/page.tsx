@@ -3,7 +3,9 @@ import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ActivityList } from '@/components/activity-list';
 import { academicStats, user, activities } from '@/lib/data';
-import { GraduationCap, Percent, Star, Target } from 'lucide-react';
+import { GraduationCap, Percent, Star, Target, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export default function DashboardPage({ searchParams }: { searchParams: { name?: string } }) {
   const recentActivities = [...activities]
@@ -24,7 +26,7 @@ export default function DashboardPage({ searchParams }: { searchParams: { name?:
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Overall GPA</CardTitle>
+              <CardTitle className="text-sm font-medium">Overall CGPA</CardTitle>
               <Target className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -40,6 +42,11 @@ export default function DashboardPage({ searchParams }: { searchParams: { name?:
             <CardContent>
               <div className="text-2xl font-bold">{academicStats.attendance}%</div>
               <p className="text-xs text-muted-foreground">Across all subjects this semester</p>
+               <Button asChild variant="link" className="p-0 h-auto mt-2 text-xs">
+                <Link href="/attendance">
+                    View Details <ArrowRight className="ml-1 h-3 w-3" />
+                </Link>
+              </Button>
             </CardContent>
           </Card>
           <Card>

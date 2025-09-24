@@ -4,6 +4,7 @@ export type User = {
   avatarUrl: string;
   program: string;
   studentId: string;
+  marksheetUrl?: string;
 };
 
 export type Faculty = {
@@ -82,4 +83,10 @@ export type Course = {
   progress: number;
   imageUrl: string;
   category: string;
+};
+
+export type AttendanceRecord = {
+    id: string;
+    date: string;
+    status: 'Present' | 'Absent' | 'Holiday';
 };

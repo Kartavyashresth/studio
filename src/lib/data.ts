@@ -1,4 +1,4 @@
-import type { User, Activity, AcademicStats, AcademicRecord, Student, Faculty, Course } from '@/lib/types';
+import type { User, Activity, AcademicStats, AcademicRecord, Student, Faculty, Course, AttendanceRecord } from '@/lib/types';
 import { PlaceHolderImages } from './placeholder-images';
 
 const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar');
@@ -9,6 +9,7 @@ export const user: User = {
   avatarUrl: userAvatar?.imageUrl || 'https://picsum.photos/seed/user-avatar/100/100',
   program: 'B.Tech in Computer Science',
   studentId: 'STU123456',
+  marksheetUrl: 'https://picsum.photos/seed/marksheet-123/800/1100',
 };
 
 export const facultyUser: Faculty = {
@@ -169,6 +170,7 @@ export const students: Student[] = [
     avatarUrl: 'https://picsum.photos/seed/jane-smith/100/100',
     program: 'B.A. in Digital Media',
     studentId: 'STU654321',
+    marksheetUrl: 'https://picsum.photos/seed/marksheet-654/800/1100',
     stats: {
         gpa: 3.5,
         attendance: 95,
@@ -187,6 +189,7 @@ export const students: Student[] = [
     avatarUrl: 'https://picsum.photos/seed/robert-j/100/100',
     program: 'B.S. in Mechanical Engineering',
     studentId: 'STU789012',
+    marksheetUrl: 'https://picsum.photos/seed/marksheet-789/800/1100',
     stats: {
         gpa: 3.9,
         attendance: 88,
@@ -204,6 +207,7 @@ export const students: Student[] = [
     avatarUrl: 'https://picsum.photos/seed/emily-w/100/100',
     program: 'B.Tech in Computer Science',
     studentId: 'STU345678',
+    marksheetUrl: 'https://picsum.photos/seed/marksheet-345/800/1100',
     stats: {
         gpa: 3.2,
         attendance: 91,
@@ -216,4 +220,29 @@ export const students: Student[] = [
     skills: ['Public Speaking', 'Critical Thinking', 'Leadership', 'Java'],
     branch: 'Computer Science',
   }
-]
+];
+
+// Generate sample attendance data for the last 90 days
+const generateAttendanceData = (): AttendanceRecord[] => {
+    const data: AttendanceRecord[] = [];
+    const today = new Date();
+    for (let i = 0; i < 90; i++) {
+        const date = new Date();
+        date.setDate(today.getDate() - i);
+        const dayOfWeek = date.getDay();
+
+        if (dayOfWeek === 0 || dayOfWeek === 6) { // Sunday or Saturday
+            data.push({ id: `att-${i}`, date: date.toISOString(), status: 'Holiday' });
+        } else {
+            const random = Math.random();
+            if (random < 0.08) {
+                 data.push({ id: `att-${i}`, date: date.toISOString(), status: 'Absent' });
+            } else {
+                 data.push({ id: `att-${i}`, date: date.toISOString(), status: 'Present' });
+            }
+        }
+    }
+    return data;
+};
+
+export const attendanceData: AttendanceRecord[] = generateAttendanceData();

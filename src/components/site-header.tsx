@@ -23,7 +23,8 @@ import {
   UserPlus,
   Camera,
   LogOut,
-  GraduationCap
+  GraduationCap,
+  Percent
 } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -50,6 +51,7 @@ const studentNavItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/activities', label: 'Activities', icon: ScrollText },
   { href: '/records', label: 'Academic Records', icon: BookMarked },
+  { href: '/attendance', label: 'Attendance', icon: Percent },
   { href: '/courses', label: 'Courses', icon: GraduationCap },
   { href: '/portfolio', label: 'Portfolio', icon: BookUser },
   { href: '/placements', label: 'Placements', icon: Briefcase },
