@@ -103,6 +103,16 @@ export default {
             filter: 'drop-shadow(0 0 15px hsl(var(--primary)))',
           },
         },
+        'pulse-glow-white': {
+          '0%, 100%': {
+            opacity: '1',
+            filter: 'drop-shadow(0 0 7px #fff)',
+          },
+          '50%': {
+            opacity: '0.8',
+            filter: 'drop-shadow(0 0 20px #fff)',
+          },
+        },
         'thunder-glow': {
             '0%': { opacity: '0', filter: 'drop-shadow(0 0 2px hsl(var(--primary)))' },
             '20%': { opacity: '1', filter: 'drop-shadow(0 0 15px hsl(var(--primary)))' },
@@ -118,7 +128,8 @@ export default {
         'fade-in-scale': 'fade-in-scale 1.5s ease-out forwards',
         'fade-in-delay': 'fade-in-delay 2.5s ease-out forwards',
         'pulse-glow': 'pulse-glow 2.5s ease-in-out infinite',
-        'thunder-glow': 'thunder-glow 2.5s ease-in-out forwards',
+        'pulse-glow-white': 'pulse-glow-white 2.5s ease-in-out infinite',
+        'thunder-glow': 'thunder-glow 2.s ease-in-out forwards',
       },
     },
   },
