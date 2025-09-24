@@ -43,15 +43,6 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
         router.push(`/employer/dashboard?name=${encodeURIComponent(fullName)}`);
         break;
       case 'faculty':
-        const facultyExists = registeredFaculty.some(f => f.email.toLowerCase() === email.toLowerCase());
-        if (!facultyExists) {
-            toast({
-                variant: 'destructive',
-                title: 'Login Failed',
-                description: 'You are not a registered faculty member.',
-            });
-            return;
-        }
         router.push(`/faculty/dashboard?name=${encodeURIComponent(fullName)}`);
         break;
       case 'institute_admin':
