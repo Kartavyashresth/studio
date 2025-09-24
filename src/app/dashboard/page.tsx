@@ -1,3 +1,4 @@
+
 import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ActivityList } from '@/components/activity-list';
@@ -5,7 +6,10 @@ import { academicStats, user, activities } from '@/lib/data';
 import { GraduationCap, Percent, Star, Target } from 'lucide-react';
 
 export default function DashboardPage({ searchParams }: { searchParams: { name?: string } }) {
-  const recentActivities = activities.slice(0, 4);
+  const recentActivities = [...activities]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 4);
+    
   const userName = searchParams.name || user.name;
   const firstName = userName.split(' ')[0];
 
