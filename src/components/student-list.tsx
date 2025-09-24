@@ -103,7 +103,7 @@ function StudentRow({ student }: { student: Student }) {
 
   return (
     <Collapsible asChild open={isOpen} onOpenChange={setIsOpen}>
-        <>
+        <tbody className="w-full">
             <TableRow className="cursor-pointer bg-transparent transition-colors hover:bg-muted/50" onClick={() => setIsOpen(!isOpen)}>
               <TableCell>
                 <div className="flex items-center gap-3">
@@ -178,7 +178,7 @@ function StudentRow({ student }: { student: Student }) {
                 </TableCell>
               </tr>
             </CollapsibleContent>
-        </>
+        </tbody>
     </Collapsible>
   );
 }
@@ -197,11 +197,9 @@ export function StudentList({ students }: { students: Student[] }) {
               <TableHead className="text-right"></TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
             {students.map((student) => (
               <StudentRow key={student.studentId} student={student} />
             ))}
-          </TableBody>
         </Table>
       </CardContent>
     </Card>
