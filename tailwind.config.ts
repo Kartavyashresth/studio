@@ -103,6 +103,14 @@ export default {
             filter: 'drop-shadow(0 0 15px hsl(var(--primary)))',
           },
         },
+        'thunder-glow': {
+            '0%': { opacity: '0', filter: 'drop-shadow(0 0 2px hsl(var(--primary)))' },
+            '20%': { opacity: '1', filter: 'drop-shadow(0 0 15px hsl(var(--primary)))' },
+            '25%': { opacity: '0.5', filter: 'drop-shadow(0 0 5px hsl(var(--primary)))' },
+            '30%': { opacity: '1', filter: 'drop-shadow(0 0 25px hsl(var(--primary)))' },
+            '50%': { opacity: '1', filter: 'drop-shadow(0 0 5px hsl(var(--primary)))' },
+            '100%': { opacity: '1', filter: 'drop-shadow(0 0 5px hsl(var(--primary)))' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -110,6 +118,7 @@ export default {
         'fade-in-scale': 'fade-in-scale 1.5s ease-out forwards',
         'fade-in-delay': 'fade-in-delay 2.5s ease-out forwards',
         'pulse-glow': 'pulse-glow 2.5s ease-in-out infinite',
+        'thunder-glow': 'thunder-glow 2.5s ease-in-out forwards',
       },
     },
   },
