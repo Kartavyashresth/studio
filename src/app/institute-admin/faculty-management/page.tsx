@@ -94,7 +94,11 @@ export default function FacultyManagementPage() {
                         <SelectValue placeholder="Select a branch" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="Computer Science">Computer Science</SelectItem>
+                            <SelectItem value="Computer Science">Computer Science (CSE)</SelectItem>
+                            <SelectItem value="Computer Science (IoT)">Computer Science (IoT)</SelectItem>
+                            <SelectItem value="Electronics and Communication Engineering">Electronics &amp; Communication (ECE)</SelectItem>
+                            <SelectItem value="Civil Engineering">Civil Engineering</SelectItem>
+                            <SelectItem value="Electrical Engineering">Electrical Engineering</SelectItem>
                             <SelectItem value="Mechanical Engineering">Mechanical Engineering</SelectItem>
                             <SelectItem value="Digital Media">Digital Media</SelectItem>
                             <SelectItem value="General">General</SelectItem>
