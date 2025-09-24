@@ -104,7 +104,7 @@ function StudentRow({ student }: { student: Student }) {
   return (
     <Collapsible asChild open={isOpen} onOpenChange={setIsOpen}>
         <>
-            <TableRow className="cursor-pointer bg-transparent hover:bg-muted/50" onClick={() => setIsOpen(!isOpen)}>
+            <TableRow className="cursor-pointer bg-transparent transition-colors hover:bg-muted/50" onClick={() => setIsOpen(!isOpen)}>
               <TableCell>
                 <div className="flex items-center gap-3">
                   <Image
@@ -126,7 +126,7 @@ function StudentRow({ student }: { student: Student }) {
                 {student.stats.gpa.toFixed(2)}
               </TableCell>
               <TableCell className="hidden sm:table-cell">
-                 <Button asChild variant="outline" size="sm">
+                 <Button asChild variant="outline" size="sm" onClick={(e) => e.stopPropagation()}>
                     <Link href="/portfolio">
                         <BookUser className="mr-2 h-4 w-4" />
                         View Portfolio
@@ -169,7 +169,7 @@ function StudentRow({ student }: { student: Student }) {
                                     <p className="text-muted-foreground text-sm">No specific skills listed for approved activities.</p>
                                 )}
                             </div>
-                            <div className="lg:col-span-1 lg:border-l lg:pl-6 flex flex-col justify-center gap-3">
+                            <div className="lg:col-span-1 lg:border-l lg:pl-6 flex flex-col justify-center gap-3" onClick={(e) => e.stopPropagation()}>
                                 <h4 className="font-semibold text-base">Actions</h4>
                                 <FeedbackDialog student={student} />
                             </div>
