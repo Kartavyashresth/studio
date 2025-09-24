@@ -87,7 +87,7 @@ export const activities: Activity[] = [
   {
     id: 'act005',
     name: 'University Coding Club President',
-    type: 'Extra-curricular',
+    type: 'Leadership Role',
     date: '2023-05-20',
     status: 'Approved',
     credits: 8,
@@ -113,6 +113,26 @@ export const activities: Activity[] = [
     credits: 3,
     approver: 'Coach Amit',
     skills: ['Teamwork', 'Athleticism', 'Sportsmanship'],
+  },
+  {
+    id: 'act013',
+    name: 'CodeFest 2024 Hackathon',
+    type: 'Competition',
+    date: '2024-03-12',
+    status: 'Approved',
+    credits: 6,
+    approver: 'Dr. Sumit Kumar',
+    skills: ['Problem Solving', 'Java', 'Teamwork'],
+  },
+  {
+    id: 'act014',
+    name: 'Local Charity Drive',
+    type: 'Volunteering',
+    date: '2023-12-15',
+    status: 'Approved',
+    credits: 2,
+    approver: 'City Outreach Program',
+    skills: ['Community Engagement', 'Organization'],
   }
 ];
 
@@ -173,7 +193,7 @@ export const students: Student[] = [
         credits: 92
     },
     activities: [
-        { id: 'act009', name: 'Robotics Competition', type: 'Extra-curricular', date: '2024-02-15', status: 'Approved', credits: 6, skills: ['Robotics', 'CAD', 'Problem Solving'] }
+        { id: 'act009', name: 'Robotics Competition', type: 'Competition', date: '2024-02-15', status: 'Approved', credits: 6, skills: ['Robotics', 'CAD', 'Problem Solving'] }
     ],
     skills: ['Robotics', 'CAD', 'Problem Solving', 'Leadership'],
     branch: 'Mechanical Engineering',
@@ -190,8 +210,8 @@ export const students: Student[] = [
         credits: 75
     },
     activities: [
-        { id: 'act010', name: 'Debate Team Captain', type: 'Extra-curricular', date: '2023-10-01', status: 'Approved', credits: 5, skills: ['Public Speaking', 'Critical Thinking', 'Leadership'] },
-        { id: 'act012', name: 'Hackathon Participation', type: 'Conference', date: '2024-04-12', status: 'Pending', credits: 5, skills: ['Java', 'Problem Solving'], documentUrl: 'https://picsum.photos/seed/doc-act012/800/1100' }
+        { id: 'act010', name: 'Debate Team Captain', type: 'Leadership Role', date: '2023-10-01', status: 'Approved', credits: 5, skills: ['Public Speaking', 'Critical Thinking', 'Leadership'] },
+        { id: 'act012', name: 'Hackathon Participation', type: 'Competition', date: '2024-04-12', status: 'Pending', credits: 5, skills: ['Java', 'Problem Solving'], documentUrl: 'https://picsum.photos/seed/doc-act012/800/1100' }
     ],
     skills: ['Public Speaking', 'Critical Thinking', 'Leadership', 'Java'],
     branch: 'Computer Science',

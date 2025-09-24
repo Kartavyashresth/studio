@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { user as staticUser, activities } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
-import { Briefcase, Calendar, Presentation, Trophy, Camera, Pencil, Save, BookOpen } from 'lucide-react';
+import { Briefcase, Calendar, Presentation, Trophy, Camera, Pencil, Save, BookOpen, Heart, Award, UserCheck, Handshake } from 'lucide-react';
 import { useState, useRef, type ChangeEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -31,6 +31,10 @@ const activityIcons: Record<Activity['type'], React.ReactElement> = {
     'Seminar': <Presentation className="h-5 w-5 text-primary" />,
     'Extra-curricular': <Trophy className="h-5 w-5 text-primary" />,
     'Workshop': <BookOpen className="h-5 w-5 text-primary" />,
+    'Volunteering': <Heart className="h-5 w-5 text-primary" />,
+    'Competition': <Award className="h-5 w-5 text-primary" />,
+    'Leadership Role': <UserCheck className="h-5 w-5 text-primary" />,
+    'Community Service': <Handshake className="h-5 w-5 text-primary" />,
 };
 
 const approvedActivities = activities.filter(a => a.status === 'Approved');
@@ -86,8 +90,14 @@ export function PortfolioPreview({ sectionVisibility }: PortfolioPreviewProps) {
     if (type === 'Conference' || type === 'Seminar') {
         return 'Conferences & Seminars';
     }
+     if (type === 'Volunteering' || type === 'Community Service') {
+        return 'Volunteering & Community Service';
+    }
     if (type === 'MOOC') {
         return 'Online Courses (MOOCs)';
+    }
+    if (type === 'Leadership Role') {
+        return 'Leadership Roles';
     }
     return `${type}s`;
   }
@@ -159,7 +169,10 @@ export function PortfolioPreview({ sectionVisibility }: PortfolioPreviewProps) {
         
         <div className="p-8 space-y-8">
             {Object.entries(combinedActivities).map(([title, { icon, activities, type }]) => {
-                if (!sectionVisibility[type as keyof SectionVisibility] && !(type === 'Seminar' && sectionVisibility['Conference'])) return null;
+                if (!sectionVisibility[type as keyof SectionVisibility] && 
+                    !(type === 'Seminar' && sectionVisibility['Conference']) &&
+                    !(type === 'Community Service' && sectionVisibility['Volunteering'])
+                ) return null;
 
                 return (
                     <section key={title}>

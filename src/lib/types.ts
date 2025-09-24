@@ -17,7 +17,7 @@ export type Faculty = {
 export type Activity = {
   id: string;
   name:string;
-  type: 'Seminar' | 'Conference' | 'MOOC' | 'Internship' | 'Extra-curricular' | 'Workshop';
+  type: 'Seminar' | 'Conference' | 'MOOC' | 'Internship' | 'Extra-curricular' | 'Workshop' | 'Volunteering' | 'Competition' | 'Leadership Role' | 'Community Service';
   date: string;
   status: 'Approved' | 'Pending' | 'Rejected';
   credits: number;

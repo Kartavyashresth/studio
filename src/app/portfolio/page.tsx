@@ -16,6 +16,10 @@ export type SectionVisibility = {
   'Extra-curricular': boolean;
   Seminar: boolean;
   Workshop: boolean;
+  Volunteering: boolean;
+  Competition: boolean;
+  'Leadership Role': boolean;
+  'Community Service': boolean;
 };
 
 export default function PortfolioPage() {
@@ -26,6 +30,10 @@ export default function PortfolioPage() {
     Seminar: true,
     'Extra-curricular': false,
     Workshop: true,
+    Volunteering: true,
+    Competition: true,
+    'Leadership Role': true,
+    'Community Service': false,
   });
 
   const handleVisibilityChange = (section: keyof SectionVisibility, checked: boolean) => {
@@ -87,6 +95,33 @@ export default function PortfolioPage() {
                             onCheckedChange={(checked) => {
                                 handleVisibilityChange('Conference', checked);
                                 handleVisibilityChange('Seminar', checked);
+                            }}
+                        />
+                    </div>
+                     <div className="flex items-center justify-between">
+                        <Label htmlFor="show-competitions">Competitions</Label>
+                        <Switch 
+                            id="show-competitions" 
+                            checked={visibility.Competition}
+                            onCheckedChange={(checked) => handleVisibilityChange('Competition', checked)}
+                        />
+                    </div>
+                     <div className="flex items-center justify-between">
+                        <Label htmlFor="show-leadership">Leadership Roles</Label>
+                        <Switch 
+                            id="show-leadership" 
+                            checked={visibility['Leadership Role']}
+                            onCheckedChange={(checked) => handleVisibilityChange('Leadership Role', checked)}
+                        />
+                    </div>
+                     <div className="flex items-center justify-between">
+                        <Label htmlFor="show-volunteering">Volunteering & Community Service</Label>
+                        <Switch 
+                            id="show-volunteering" 
+                            checked={visibility.Volunteering || visibility['Community Service']}
+                            onCheckedChange={(checked) => {
+                                handleVisibilityChange('Volunteering', checked);
+                                handleVisibilityChange('Community Service', checked);
                             }}
                         />
                     </div>

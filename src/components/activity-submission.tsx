@@ -132,6 +132,10 @@ export function ActivitySubmission() {
                     <SelectItem value="workshop">Workshop</SelectItem>
                     <SelectItem value="mooc">MOOC</SelectItem>
                     <SelectItem value="internship">Internship</SelectItem>
+                    <SelectItem value="competition">Competition</SelectItem>
+                    <SelectItem value="leadership-role">Leadership Role</SelectItem>
+                    <SelectItem value="volunteering">Volunteering</SelectItem>
+                    <SelectItem value="community-service">Community Service</SelectItem>
                     <SelectItem value="extra-curricular">Extra-curricular</SelectItem>
                   </SelectContent>
                 </Select>
