@@ -117,7 +117,11 @@ export function AuthLayout({
             padding: 12px 45px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            transition: transform 80ms ease-in;
+            transition: transform 80ms ease-in, background-color 0.3s, color 0.3s;
+        }
+        .ghost-button:hover {
+            background-color: #fff;
+            color: hsl(var(--primary));
         }
         .ghost-button:active {
             transform: scale(0.95);
