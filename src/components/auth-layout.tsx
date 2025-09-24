@@ -84,7 +84,7 @@ export function AuthLayout({
                         isRegisterActive ? "translate-x-[20%]" : "translate-x-0"
                     )}>
                          <NexusLogo className="h-12 w-12 mb-4" />
-                        <h1 className="text-3xl font-headline">Hello, Friend!</h1>
+                        <h1 className="text-3xl font-headline">Welcome to Nexus</h1>
                         <p className="text-sm mt-2 mb-4">Enter your personal details and start your journey with us</p>
                         <button className="ghost-button" onClick={() => setIsRegisterActive(true)}>
                             Sign Up
