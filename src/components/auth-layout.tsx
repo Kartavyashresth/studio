@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -68,7 +69,7 @@ export function AuthLayout({
                         "overlay-panel overlay-left",
                         isRegisterActive ? "translate-x-0" : "-translate-x-[20%]"
                     )}>
-                        <NexusLogo className="h-12 w-12 mb-4" />
+                        <NexusLogo className="h-12 w-12 mb-4 animate-pulse-glow" />
                         <h1 className="text-3xl font-headline">Welcome Back!</h1>
                         <p className="text-sm mt-2 mb-4">
                             To keep connected with us please login with your personal info
@@ -83,7 +84,7 @@ export function AuthLayout({
                         "overlay-panel overlay-right",
                         isRegisterActive ? "translate-x-[20%]" : "translate-x-0"
                     )}>
-                         <NexusLogo className="h-12 w-12 mb-4" />
+                         <NexusLogo className="h-12 w-12 mb-4 animate-pulse-glow" />
                         <h1 className="text-3xl font-headline">Welcome to Nexus</h1>
                         <p className="text-sm mt-2 mb-4">Enter your personal details and start your journey with us</p>
                         <button className="ghost-button" onClick={() => setIsRegisterActive(true)}>

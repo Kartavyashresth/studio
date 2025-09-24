@@ -92,13 +92,24 @@ export default {
         'fade-in-delay': {
             '0%, 50%': { opacity: '0' },
             '100%': { opacity: '1' },
-        }
+        },
+        'pulse-glow': {
+          '0%, 100%': {
+            opacity: '1',
+            filter: 'drop-shadow(0 0 5px hsl(var(--primary)))',
+          },
+          '50%': {
+            opacity: '0.8',
+            filter: 'drop-shadow(0 0 15px hsl(var(--primary)))',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in-scale': 'fade-in-scale 1.5s ease-out forwards',
         'fade-in-delay': 'fade-in-delay 2.5s ease-out forwards',
+        'pulse-glow': 'pulse-glow 2.5s ease-in-out infinite',
       },
     },
   },
