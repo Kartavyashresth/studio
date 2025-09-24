@@ -122,6 +122,7 @@ export function AuthLayout({
         .ghost-button:hover {
             background-color: #fff;
             color: hsl(var(--primary));
+            transform: scale(1.05);
         }
         .ghost-button:active {
             transform: scale(0.95);
