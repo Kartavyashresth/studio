@@ -18,59 +18,52 @@ import {
 const galleryImages = [
   {
     id: 'img001',
-    name: 'Hackathon Finals',
-    width: 600,
-    height: 400,
-    imageUrl: 'https://picsum.photos/seed/gallery1/600/400',
+    name: 'College Fest Crowd',
+    width: 800,
+    height: 533,
+    imageUrl: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 'img002',
-    name: 'Award Ceremony',
-    width: 400,
-    height: 600,
-    imageUrl: 'https://picsum.photos/seed/gallery2/400/600',
+    name: 'Audience Watching a Presentation',
+    width: 800,
+    height: 533,
+    imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 'img003',
-    name: 'Project Expo',
-    width: 600,
-    height: 400,
-    imageUrl: 'https://picsum.photos/seed/gallery3/600/400',
+    name: 'Live Concert Performance',
+    width: 800,
+    height: 533,
+    imageUrl: 'https://images.unsplash.com/photo-1519750024442-3a3f5626b969?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 'img004',
-    name: 'Annual Sports Meet',
-    width: 400,
-    height: 300,
-    imageUrl: 'https://picsum.photos/seed/gallery4/400/300',
-  },
-    {
-    id: 'img005',
-    name: 'Guest Lecture',
-    width: 600,
-    height: 800,
-    imageUrl: 'https://picsum.photos/seed/gallery5/600/800',
-  },
-   {
-    id: 'img006',
-    name: 'Convocation Day',
+    name: 'Speaker at a Conference',
     width: 800,
-    height: 400,
-    imageUrl: 'https://picsum.photos/seed/gallery6/800/400',
-  },
-   {
-    id: 'img007',
-    name: 'Cultural Fest',
-    width: 400,
-    height: 500,
-    imageUrl: 'https://picsum.photos/seed/gallery7/400/500',
+    height: 533,
+    imageUrl: 'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
-    id: 'img008',
-    name: 'Science Fair',
-    width: 600,
-    height: 400,
-    imageUrl: 'https://picsum.photos/seed/gallery8/600/400',
+    id: 'img005',
+    name: 'Group Discussion',
+    width: 700,
+    height: 933,
+    imageUrl: 'https://images.unsplash.com/photo-1582192730842-d21a1a45f94d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  },
+  {
+    id: 'img006',
+    name: 'Outdoor Festival',
+    width: 800,
+    height: 533,
+    imageUrl: 'https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  },
+  {
+    id: 'img007',
+    name: 'Conference Presentation',
+    width: 800,
+    height: 533,
+    imageUrl: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
 ];
 
@@ -95,7 +88,11 @@ export function EventGallery({ events }: { events: CollegeEvent[] }) {
             </div>
           </DialogTrigger>
           <DialogContent className="max-w-4xl p-0 border-0 bg-transparent">
-            <Carousel>
+            <Carousel
+              opts={{
+                startIndex: index,
+              }}
+            >
               <CarouselContent>
                 {galleryImages.map((img, idx) => (
                   <CarouselItem key={`${img.id}-${idx}`}>
