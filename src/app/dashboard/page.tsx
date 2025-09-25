@@ -8,8 +8,6 @@ import { academicStats, user, activities } from '@/lib/data';
 import { GraduationCap, Percent, Star, Target, ArrowRight, CalendarCheck, FilePenLine } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { MarkAttendance } from '@/components/mark-attendance';
-import { NoticeBoard } from '@/components/notice-board';
 import { PerformanceChart } from '@/components/performance-chart';
 import { LeaveApplicationForm } from '@/components/leave-application-form';
 
@@ -28,8 +26,6 @@ export default function DashboardPage({ searchParams }: { searchParams: { name?:
             <h1 className="text-3xl md:text-4xl font-headline tracking-tight">Welcome back, {firstName}!</h1>
             <p className="text-muted-foreground mt-1">Here's a summary of your academic journey.</p>
         </header>
-
-        <NoticeBoard />
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
@@ -72,7 +68,6 @@ export default function DashboardPage({ searchParams }: { searchParams: { name?:
               <CardTitle className="text-sm font-medium">Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col gap-2">
-                <MarkAttendance />
                 <LeaveApplicationForm />
             </CardContent>
           </Card>
