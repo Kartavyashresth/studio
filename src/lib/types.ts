@@ -43,6 +43,18 @@ export type AcademicRecord = {
   grade: string;
 };
 
+export type ExamResult = {
+    id: string;
+    semester: string;
+    publishDate: string;
+    overallGrade: 'PASS' | 'FAIL';
+    courses: {
+        courseName: string;
+        courseCode: string;
+        grade: string;
+    }[];
+};
+
 export type Student = User & {
     stats: AcademicStats;
     activities: Activity[];

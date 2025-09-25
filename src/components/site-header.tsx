@@ -24,7 +24,9 @@ import {
   Camera,
   LogOut,
   GraduationCap,
-  Percent
+  Percent,
+  ClipboardCheck,
+  GalleryVertical
 } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -51,11 +53,13 @@ const studentNavItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/activities', label: 'Activities', icon: ScrollText },
   { href: '/records', label: 'Academic Records', icon: BookMarked },
+  { href: '/results', label: 'Exam Results', icon: ClipboardCheck },
   { href: '/attendance', label: 'Attendance', icon: Percent },
   { href: '/courses', label: 'Courses', icon: GraduationCap },
   { href: '/portfolio', label: 'Portfolio', icon: BookUser },
   { href: '/placements', label: 'Placements', icon: Briefcase },
   { href: '/events', label: 'Events', icon: Calendar },
+  { href: '/gallery', label: 'Gallery', icon: GalleryVertical },
 ];
 
 const facultyNavItems = [

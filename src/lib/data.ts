@@ -1,5 +1,5 @@
 
-import type { User, Activity, AcademicStats, AcademicRecord, Student, Faculty, Course, AttendanceRecord, GpaHistory, Notice } from '@/lib/types';
+import type { User, Activity, AcademicStats, AcademicRecord, Student, Faculty, Course, AttendanceRecord, GpaHistory, Notice, ExamResult } from '@/lib/types';
 import { PlaceHolderImages } from './placeholder-images';
 
 const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar');
@@ -143,6 +143,31 @@ export const academicRecords: AcademicRecord[] = [
   { id: 'rec002', courseName: 'Data Structures', courseCode: 'CS102', semester: 'Spring 2023', grade: 'A-' },
   { id: 'rec003', courseName: 'Database Management Systems', courseCode: 'CS201', semester: 'Fall 2023', grade: 'B+' },
   { id: 'rec004', courseName: 'Operating Systems', courseCode: 'CS202', semester: 'Spring 2024', grade: 'A' },
+];
+
+export const examResults: ExamResult[] = [
+    {
+        id: 'res002',
+        semester: 'Spring 2024',
+        publishDate: '2024-06-10',
+        overallGrade: 'PASS',
+        courses: [
+            { courseName: 'Operating Systems', courseCode: 'CS202', grade: 'A' },
+            { courseName: 'Computer Networks', courseCode: 'CS204', grade: 'B+' },
+            { courseName: 'Software Engineering', courseCode: 'CS206', grade: 'A-' },
+        ],
+    },
+    {
+        id: 'res001',
+        semester: 'Fall 2023',
+        publishDate: '2024-01-15',
+        overallGrade: 'PASS',
+        courses: [
+            { courseName: 'Database Management Systems', courseCode: 'CS201', grade: 'B+' },
+            { courseName: 'Theory of Computation', courseCode: 'CS203', grade: 'A' },
+            { courseName: 'Web Technologies', courseCode: 'CS205', grade: 'B' },
+        ],
+    },
 ];
 
 export const gpaHistory: GpaHistory[] = [

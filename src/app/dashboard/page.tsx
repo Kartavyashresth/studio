@@ -12,6 +12,8 @@ import { Button } from '@/components/ui/button';
 import { LeaveApplicationForm } from '@/components/leave-application-form';
 import { PerformanceChart } from '@/components/performance-chart';
 import { NoticeBoard } from '@/components/notice-board';
+import { HostelGatepassForm } from '@/components/hostel-gatepass-form';
+import { LibraryCardForm } from '@/components/library-card-form';
 
 
 export default function DashboardPage() {
@@ -74,6 +76,8 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent className="flex flex-col gap-2">
                 <LeaveApplicationForm />
+                <HostelGatepassForm />
+                <LibraryCardForm />
             </CardContent>
           </Card>
         </div>
