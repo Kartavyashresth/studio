@@ -4,18 +4,20 @@ import { students, facultyUser } from '@/lib/data';
 
 export default function VerificationPage() {
   // Aggregate all pending activities from students in the faculty's branch
-  const pendingActivities = students.flatMap(student => 
-    student.branch === facultyUser.branch ?
-    student.activities
-      .filter(activity => activity.status === 'Pending')
-      .map(activity => ({ 
-          ...activity, 
-          studentName: student.name, 
-          studentId: student.studentId,
-          // Use a placeholder if documentUrl is missing for the demo
-          documentUrl: activity.documentUrl || 'https://picsum.photos/seed/doc-placeholder/800/1100'
-        }))
-    : []
+  const pendingActivities = students.flatMap(student =>
+    student.branch === facultyUser.branch
+      ? student.activities
+          .filter(activity => activity.status === 'Pending')
+          .map(activity => ({
+            ...activity,
+            studentName: student.name,
+            studentId: student.studentId,
+            // Use a placeholder if documentUrl is missing for the demo
+            documentUrl:
+              activity.documentUrl ||
+              'https://picsum.photos/seed/doc-placeholder/800/1100',
+          }))
+      : []
   );
 
   return (
