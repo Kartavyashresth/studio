@@ -1,6 +1,7 @@
 
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ActivityList } from '@/components/activity-list';
@@ -10,12 +11,14 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { LeaveApplicationForm } from '@/components/leave-application-form';
 
-export default function DashboardPage({ searchParams }: { searchParams: { name?: string } }) {
+export default function DashboardPage() {
+  const searchParams = useSearchParams();
+  
   const recentActivities = [...activities]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 4);
     
-  const userName = searchParams.name || user.name;
+  const userName = searchParams.get('name') || user.name;
   const firstName = userName.split(' ')[0];
 
   return (
