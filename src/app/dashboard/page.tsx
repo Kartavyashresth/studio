@@ -5,11 +5,12 @@ import { useSearchParams } from 'next/navigation';
 import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ActivityList } from '@/components/activity-list';
-import { academicStats, user, activities } from '@/lib/data';
+import { academicStats, user, activities, gpaHistory } from '@/lib/data';
 import { GraduationCap, Percent, Star, Target, ArrowRight, CalendarCheck, FilePenLine } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { LeaveApplicationForm } from '@/components/leave-application-form';
+import { PerformanceChart } from '@/components/performance-chart';
 
 export default function DashboardPage() {
   const searchParams = useSearchParams();
@@ -75,6 +76,10 @@ export default function DashboardPage() {
           </Card>
         </div>
         
+        <div>
+          <PerformanceChart data={gpaHistory} />
+        </div>
+
         <div>
             <h2 className="text-2xl font-headline mb-4">Recent Activity</h2>
             <ActivityList activities={recentActivities} />

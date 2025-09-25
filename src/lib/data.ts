@@ -1,4 +1,5 @@
-import type { User, Activity, AcademicStats, AcademicRecord, Student, Faculty, Course, AttendanceRecord } from '@/lib/types';
+
+import type { User, Activity, AcademicStats, AcademicRecord, Student, Faculty, Course, AttendanceRecord, GpaHistory } from '@/lib/types';
 import { PlaceHolderImages } from './placeholder-images';
 
 const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar');
@@ -143,6 +144,15 @@ export const academicRecords: AcademicRecord[] = [
   { id: 'rec003', courseName: 'Database Management Systems', courseCode: 'CS201', semester: 'Fall 2023', grade: 'B+' },
   { id: 'rec004', courseName: 'Operating Systems', courseCode: 'CS202', semester: 'Spring 2024', grade: 'A' },
 ];
+
+export const gpaHistory: GpaHistory[] = [
+    { semester: 'Sem 1', gpa: 3.5 },
+    { semester: 'Sem 2', gpa: 3.7 },
+    { semester: 'Sem 3', gpa: 3.6 },
+    { semester: 'Sem 4', gpa: 3.9 },
+    { semester: 'Sem 5', gpa: 3.8 },
+];
+
 
 export const courses: Course[] = [
     { id: 'crs001', name: 'Advanced Algorithms', instructor: 'Dr. Sumit Kumar', progress: 75, imageUrl: 'https://picsum.photos/seed/algorithms/600/400', category: 'Computer Science' },

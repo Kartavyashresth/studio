@@ -1,3 +1,4 @@
+
 export type User = {
   name: string;
   email: string;
@@ -89,4 +90,9 @@ export type AttendanceRecord = {
     id: string;
     date: string;
     status: 'Present' | 'Absent' | 'Holiday';
+};
+
+export type GpaHistory = {
+    semester: string;
+    gpa: number;
 };
