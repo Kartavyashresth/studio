@@ -1,4 +1,5 @@
 
+
 export type User = {
   name: string;
   email: string;
@@ -95,4 +96,12 @@ export type AttendanceRecord = {
 export type GpaHistory = {
     semester: string;
     gpa: number;
+};
+
+export type Notice = {
+  id: string;
+  title: string;
+  content: string;
+  date: string;
+  author: string;
 };

@@ -1,5 +1,5 @@
 
-import type { User, Activity, AcademicStats, AcademicRecord, Student, Faculty, Course, AttendanceRecord, GpaHistory } from '@/lib/types';
+import type { User, Activity, AcademicStats, AcademicRecord, Student, Faculty, Course, AttendanceRecord, GpaHistory, Notice } from '@/lib/types';
 import { PlaceHolderImages } from './placeholder-images';
 
 const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar');
@@ -159,6 +159,30 @@ export const courses: Course[] = [
     { id: 'crs002', name: 'Machine Learning Foundations', instructor: 'Dr. Nivedita Singh', progress: 45, imageUrl: 'https://picsum.photos/seed/ml/600/400', category: 'Computer Science' },
     { id: 'crs003', name: 'Thermodynamics', instructor: 'Dr. Pradeep Srivastav', progress: 90, imageUrl: 'https://picsum.photos/seed/thermo/600/400', category: 'Mechanical Engineering' },
     { id: 'crs004', name: 'Digital Marketing', instructor: 'Prof. Sneha Roy', progress: 60, imageUrl: 'https://picsum.photos/seed/marketing/600/400', category: 'Business' },
+];
+
+export const notices: Notice[] = [
+    {
+        id: 'not001',
+        title: 'Mid-term Examination Schedule',
+        content: 'The schedule for the upcoming mid-term examinations has been posted. Please check the main university website.',
+        date: '2024-05-15',
+        author: 'Examination Cell',
+    },
+    {
+        id: 'not002',
+        title: 'TechSpark 2024 Registrations Open',
+        content: 'Registrations for our annual tech fest, TechSpark, are now open. Visit the events page to register.',
+        date: '2024-05-12',
+        author: 'Student Council',
+    },
+    {
+        id: 'not003',
+        title: 'Library Closure for Maintenance',
+        content: 'The central library will be closed for maintenance from May 20th to May 22nd. Please plan accordingly.',
+        date: '2024-05-10',
+        author: 'Library Services',
+    }
 ];
 
 const allSkills = (activities: Activity[]) => {

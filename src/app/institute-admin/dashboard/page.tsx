@@ -1,9 +1,11 @@
+
 import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { UserCog, Cog, BarChart, UserPlus } from 'lucide-react';
+import { UserCog, Cog, BarChart, UserPlus, FilePenLine } from 'lucide-react';
 import { registeredFaculty, students } from '@/lib/data';
+import { PublishNoticeForm } from '@/components/publish-notice-form';
 
 export default function AdminDashboardPage({ searchParams }: { searchParams: { name?: string } }) {
   const adminName = searchParams.name || 'Admin';
@@ -60,15 +62,17 @@ export default function AdminDashboardPage({ searchParams }: { searchParams: { n
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">System Configuration</CardTitle>
-              <Cog className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium">Quick Actions</CardTitle>
+               <Cog className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">Ready</div>
-              <p className="text-xs text-muted-foreground">System is operational.</p>
-              <Button asChild variant="link" className="p-0 h-auto mt-2">
-                <Link href="/institute-admin/system-configuration">View Settings</Link>
-              </Button>
+            <CardContent className="flex flex-col gap-2">
+                <PublishNoticeForm />
+                <Button variant="outline" className="w-full justify-start" asChild>
+                    <Link href="/institute-admin/system-configuration">
+                        <Cog className="mr-2" />
+                        System Configuration
+                    </Link>
+                </Button>
             </CardContent>
           </Card>
         </div>
