@@ -8,7 +8,6 @@ import { academicStats, user, activities } from '@/lib/data';
 import { GraduationCap, Percent, Star, Target, ArrowRight, CalendarCheck, FilePenLine } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { PerformanceChart } from '@/components/performance-chart';
 import { LeaveApplicationForm } from '@/components/leave-application-form';
 
 export default function DashboardPage({ searchParams }: { searchParams: { name?: string } }) {
@@ -73,8 +72,6 @@ export default function DashboardPage({ searchParams }: { searchParams: { name?:
           </Card>
         </div>
         
-        <PerformanceChart />
-
         <div>
             <h2 className="text-2xl font-headline mb-4">Recent Activity</h2>
             <ActivityList activities={recentActivities} />
