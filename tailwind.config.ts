@@ -129,6 +129,7 @@ export default {
         'fade-in-delay': 'fade-in-delay 2.5s ease-out forwards',
         'pulse-glow': 'pulse-glow 2.5s ease-in-out infinite',
         'pulse-glow-white': 'pulse-glow-white 2.5s ease-in-out infinite',
+        'pulse-glow-white-delayed': 'pulse-glow-white 2.5s ease-in-out 1s infinite',
         'thunder-glow': 'thunder-glow 2.s ease-in-out forwards',
       },
     },

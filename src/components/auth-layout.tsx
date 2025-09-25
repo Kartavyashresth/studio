@@ -31,7 +31,7 @@ export function AuthLayout({
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-muted/40 p-4 font-body antialiased">
         <div className={cn(
-            "relative w-full max-w-4xl min-h-[520px] rounded-lg shadow-lg overflow-hidden transition-all duration-700 ease-in-out bg-card animate-pulse-glow-white",
+            "relative w-full max-w-4xl min-h-[520px] rounded-lg shadow-lg overflow-hidden transition-all duration-700 ease-in-out bg-card animate-pulse-glow-white-delayed",
             "container"
         )}>
             {/* Sign-Up Form Container */}
