@@ -69,7 +69,7 @@ export function ExamResultList({ results }: { results: ExamResult[] }) {
               </CardContent>
             </CollapsibleContent>
           </Card>
-        </CollapsibleTrigger>
+        </Collapsible>
       ))}
     </div>
   );
