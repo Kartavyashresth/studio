@@ -1,11 +1,17 @@
 
+'use client';
+
 import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ActivityList } from '@/components/activity-list';
 import { academicStats, user, activities } from '@/lib/data';
-import { GraduationCap, Percent, Star, Target, ArrowRight } from 'lucide-react';
+import { GraduationCap, Percent, Star, Target, ArrowRight, CalendarCheck, FilePenLine } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { MarkAttendance } from '@/components/mark-attendance';
+import { NoticeBoard } from '@/components/notice-board';
+import { PerformanceChart } from '@/components/performance-chart';
+import { LeaveApplicationForm } from '@/components/leave-application-form';
 
 export default function DashboardPage({ searchParams }: { searchParams: { name?: string } }) {
   const recentActivities = [...activities]
@@ -23,7 +29,9 @@ export default function DashboardPage({ searchParams }: { searchParams: { name?:
             <p className="text-muted-foreground mt-1">Here's a summary of your academic journey.</p>
         </header>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <NoticeBoard />
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Overall CGPA</CardTitle>
@@ -59,7 +67,18 @@ export default function DashboardPage({ searchParams }: { searchParams: { name?:
               <p className="text-xs text-muted-foreground">Total academic and activity credits</p>
             </CardContent>
           </Card>
+           <Card>
+            <CardHeader>
+              <CardTitle className="text-sm font-medium">Quick Actions</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-2">
+                <MarkAttendance />
+                <LeaveApplicationForm />
+            </CardContent>
+          </Card>
         </div>
+        
+        <PerformanceChart />
 
         <div>
             <h2 className="text-2xl font-headline mb-4">Recent Activity</h2>
