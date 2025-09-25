@@ -106,11 +106,11 @@ export default {
         'pulse-glow-white': {
           '0%, 100%': {
             opacity: '1',
-            filter: 'drop-shadow(0 0 7px #fff)',
+            filter: 'drop-shadow(0 0 4px #fff)',
           },
           '50%': {
             opacity: '0.8',
-            filter: 'drop-shadow(0 0 20px #fff)',
+            filter: 'drop-shadow(0 0 12px #fff)',
           },
         },
         'thunder-glow': {
