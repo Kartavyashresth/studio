@@ -72,7 +72,7 @@ export function AuthLayout({
                         <NexusLogo className="h-12 w-12 mb-4 animate-pulse-glow-white" />
                         <h1 className="text-3xl font-headline">Welcome Back!</h1>
                         <p className="text-sm mt-2 mb-4">
-                            To keep connected with us please login with your personal info
+                            With us Every achievement counts
                         </p>
                         <button className="ghost-button" onClick={() => setIsRegisterActive(false)}>
                             Sign In
@@ -86,7 +86,7 @@ export function AuthLayout({
                     )}>
                          <NexusLogo className="h-12 w-12 mb-4 animate-pulse-glow-white" />
                         <h1 className="text-3xl font-headline">Welcome to Nexus</h1>
-                        <p className="text-sm mt-2 mb-4">Enter your personal details and start your journey with us</p>
+                        <p className="text-sm mt-2 mb-4">your smart student hub</p>
                         <button className="ghost-button" onClick={() => setIsRegisterActive(true)}>
                             Sign Up
                         </button>
