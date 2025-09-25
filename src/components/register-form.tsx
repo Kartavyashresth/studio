@@ -54,7 +54,7 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center text-center px-8">
         <h1 className="text-3xl font-headline mb-4">Create Account</h1>
-        <form className="space-y-4 w-full" onSubmit={handleSubmit}>
+        <form className="space-y-3 w-full" onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2 text-left">
               <Label htmlFor="register-firstName">First Name</Label>
