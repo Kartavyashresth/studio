@@ -106,11 +106,11 @@ export default {
         'pulse-glow-white': {
           '0%, 100%': {
             opacity: '1',
-            filter: 'drop-shadow(0 0 4px #fff)',
+            filter: 'drop-shadow(0 0 2px #fff)',
           },
           '50%': {
             opacity: '0.8',
-            filter: 'drop-shadow(0 0 12px #fff)',
+            filter: 'drop-shadow(0 0 8px #fff)',
           },
         },
         'thunder-glow': {
@@ -128,8 +128,8 @@ export default {
         'fade-in-scale': 'fade-in-scale 1.5s ease-out forwards',
         'fade-in-delay': 'fade-in-delay 2.5s ease-out forwards',
         'pulse-glow': 'pulse-glow 2.5s ease-in-out infinite',
-        'pulse-glow-white': 'pulse-glow-white 2.5s ease-in-out infinite',
-        'pulse-glow-white-delayed': 'pulse-glow-white 2.5s ease-in-out 2.6s infinite',
+        'pulse-glow-white': 'pulse-glow-white 4.5s ease-in-out infinite',
+        'pulse-glow-white-delayed': 'pulse-glow-white 4.5s ease-in-out 2.6s infinite',
         'thunder-glow': 'thunder-glow 2.s ease-in-out forwards',
       },
     },
