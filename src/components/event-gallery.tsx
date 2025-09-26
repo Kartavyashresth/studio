@@ -6,6 +6,8 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
+  DialogTitle,
+  DialogDescription,
 } from '@/components/ui/dialog';
 import {
   Carousel,
@@ -68,6 +70,10 @@ export function EventGallery() {
             </div>
           </DialogTrigger>
           <DialogContent className="max-w-4xl p-0 border-0 bg-transparent">
+             <DialogTitle className="sr-only">Event Image Viewer</DialogTitle>
+             <DialogDescription className="sr-only">
+                Viewing image {index + 1} of {galleryImages.length}. Use the arrow buttons to navigate.
+             </DialogDescription>
             <Carousel
               opts={{
                 startIndex: index,
