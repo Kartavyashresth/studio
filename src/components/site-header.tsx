@@ -79,6 +79,7 @@ const adminNavItems = [
     { href: '/institute-admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/institute-admin/faculty-management', label: 'Faculty Management', icon: UserPlus },
     { href: '/institute-admin/user-management', label: 'User Management', icon: UserCog },
+    { href: '/institute-admin/gallery-management', label: 'Gallery Management', icon: GalleryVertical },
     { href: '/institute-admin/system-configuration', label: 'System Configuration', icon: Cog },
     { href: '/institute-admin/reports', label: 'Data & Reports', icon: BarChart },
 ];

@@ -1,6 +1,6 @@
 'use client';
 
-import type { CollegeEvent } from '@/lib/types';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
   Dialog,
@@ -14,60 +14,40 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { CameraOff } from 'lucide-react';
+import type { UploadedImage } from '@/lib/types';
 
-const galleryImages = [
-  {
-    id: 'img001',
-    name: 'College Fest Crowd',
-    width: 800,
-    height: 533,
-    imageUrl: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 'img002',
-    name: 'Audience Watching a Presentation',
-    width: 800,
-    height: 533,
-    imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 'img003',
-    name: 'Live Concert Performance',
-    width: 800,
-    height: 533,
-    imageUrl: 'https://images.unsplash.com/photo-1519750024442-3a3f5626b969?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 'img004',
-    name: 'Speaker at a Conference',
-    width: 800,
-    height: 533,
-    imageUrl: 'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 'img005',
-    name: 'Group Discussion',
-    width: 700,
-    height: 933,
-    imageUrl: 'https://images.unsplash.com/photo-1582192730842-d21a1a45f94d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 'img006',
-    name: 'Outdoor Festival',
-    width: 800,
-    height: 533,
-    imageUrl: 'https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 'img007',
-    name: 'Conference Presentation',
-    width: 800,
-    height: 533,
-    imageUrl: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-];
+const GALLERY_STORAGE_KEY = 'nexus-gallery-images';
 
-export function EventGallery({ events }: { events: CollegeEvent[] }) {
+export function EventGallery() {
+  const [galleryImages, setGalleryImages] = useState<UploadedImage[]>([]);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    const storedImages = localStorage.getItem(GALLERY_STORAGE_KEY);
+    if (storedImages) {
+      setGalleryImages(JSON.parse(storedImages));
+    }
+  }, []);
+
+  if (!isClient) {
+    // Render a placeholder or nothing on the server
+    return null; 
+  }
+
+  if (galleryImages.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-12 text-center">
+        <CameraOff className="mx-auto h-12 w-12 text-muted-foreground" />
+        <h3 className="mt-4 text-lg font-semibold font-headline">The Gallery is Empty</h3>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Check back later to see photos from campus events.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
       {galleryImages.map((image, index) => (
@@ -75,15 +55,15 @@ export function EventGallery({ events }: { events: CollegeEvent[] }) {
           <DialogTrigger asChild>
             <div className="group relative w-full overflow-hidden rounded-lg cursor-pointer break-inside-avoid">
               <Image
-                src={image.imageUrl}
-                alt={`Image from ${image.name}`}
-                width={image.width}
-                height={image.height}
+                src={image.dataUrl}
+                alt={`Gallery image ${index + 1}`}
+                width={500}
+                height={500}
                 data-ai-hint="event photo"
                 className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4 text-center text-white">
-                <p className="font-semibold">{image.name}</p>
+                <p className="font-semibold">Event Photo</p>
               </div>
             </div>
           </DialogTrigger>
@@ -98,8 +78,8 @@ export function EventGallery({ events }: { events: CollegeEvent[] }) {
                   <CarouselItem key={`${img.id}-${idx}`}>
                     <div className="relative aspect-video">
                       <Image
-                        src={img.imageUrl}
-                        alt={`Image from ${img.name}`}
+                        src={img.dataUrl}
+                        alt={`Gallery image ${index + 1}`}
                         fill
                         data-ai-hint="event photo"
                         className="object-contain"

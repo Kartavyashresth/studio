@@ -117,3 +117,8 @@ export type Notice = {
   date: string;
   author: string;
 };
+
+export type UploadedImage = {
+    id: string;
+    dataUrl: string;
+};
