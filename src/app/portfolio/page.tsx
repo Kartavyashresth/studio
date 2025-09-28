@@ -1,13 +1,17 @@
+
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { AppLayout } from '@/components/app-layout';
 import { PortfolioPreview } from '@/components/portfolio-preview';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { Download, Share2 } from 'lucide-react';
+import { Download, Share2, Loader2 } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 export type SectionVisibility = {
   Internship: boolean;
@@ -35,9 +39,52 @@ export default function PortfolioPage() {
     'Leadership Role': true,
     'Community Service': false,
   });
+  const [isDownloading, setIsDownloading] = useState(false);
+  const { toast } = useToast();
+  const portfolioRef = useRef<HTMLDivElement>(null);
 
   const handleVisibilityChange = (section: keyof SectionVisibility, checked: boolean) => {
     setVisibility(prev => ({ ...prev, [section]: checked }));
+  };
+
+  const handleShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toast({
+      title: 'Link Copied!',
+      description: 'Your portfolio link has been copied to the clipboard.',
+    });
+  };
+
+  const handleDownload = async () => {
+    if (!portfolioRef.current) return;
+    setIsDownloading(true);
+
+    try {
+        const canvas = await html2canvas(portfolioRef.current, {
+            scale: 2, // Higher scale for better resolution
+            useCORS: true,
+            backgroundColor: null, 
+        });
+        
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF({
+            orientation: 'p',
+            unit: 'px',
+            format: [canvas.width, canvas.height]
+        });
+
+        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+        pdf.save('portfolio.pdf');
+    } catch (error) {
+        console.error('Error generating PDF:', error);
+        toast({
+            variant: 'destructive',
+            title: 'Download Failed',
+            description: 'Could not generate PDF. Please try again.',
+        });
+    } finally {
+        setIsDownloading(false);
+    }
   };
 
   return (
@@ -49,20 +96,26 @@ export default function PortfolioPage() {
             <p className="text-muted-foreground mt-1">Your verified, shareable record of achievements.</p>
           </div>
           <div className="flex items-center gap-2">
-            <Button variant="outline">
+            <Button variant="outline" onClick={handleShare}>
               <Share2 className="mr-2 h-4 w-4" />
               Share Link
             </Button>
-            <Button>
-              <Download className="mr-2 h-4 w-4" />
-              Download PDF
+            <Button onClick={handleDownload} disabled={isDownloading}>
+                {isDownloading ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                    <Download className="mr-2 h-4 w-4" />
+                )}
+                {isDownloading ? 'Downloading...' : 'Download PDF'}
             </Button>
           </div>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <PortfolioPreview sectionVisibility={visibility} />
+            <div ref={portfolioRef}>
+                <PortfolioPreview sectionVisibility={visibility} />
+            </div>
           </div>
           <div className="lg:col-span-1">
              <Card>
