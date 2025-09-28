@@ -21,8 +21,6 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const firstName = formData.get('firstName') as string;
-    const lastName = formData.get('lastName') as string;
     const email = formData.get('email') as string;
 
     const user = allUsers.find(u => u.email === email);
@@ -36,7 +34,8 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
       return;
     }
     
-    const fullName = `${firstName} ${lastName}`;
+    // Use the name from the user record instead of form input
+    const fullName = user.name;
     
     switch (user.role) {
       case 'employer':
