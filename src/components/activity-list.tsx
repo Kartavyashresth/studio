@@ -6,6 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { CheckCircle, Clock, XCircle, FileText } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 type StatusConfig = {
   [key in Activity['status']]: {
@@ -34,6 +35,8 @@ const statusConfig: StatusConfig = {
 };
 
 export function ActivityList({ activities }: { activities: Activity[] }) {
+  const router = useRouter();
+
   if (activities.length === 0) {
     return (
         <div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-12 text-center">
@@ -45,6 +48,11 @@ export function ActivityList({ activities }: { activities: Activity[] }) {
         </div>
     );
   }
+
+  const handleRowClick = (activityId: string) => {
+    router.push(`/activities/${activityId}`);
+  };
+
 
   return (
     <Card>
@@ -62,7 +70,7 @@ export function ActivityList({ activities }: { activities: Activity[] }) {
             {activities.map((activity) => {
               const { icon: Icon, color, label } = statusConfig[activity.status];
               return (
-                <TableRow key={activity.id}>
+                <TableRow key={activity.id} onClick={() => handleRowClick(activity.id)} className="cursor-pointer">
                   <TableCell>
                     <div className="font-medium">{activity.name}</div>
                     <div className="text-sm text-muted-foreground md:hidden">{activity.type}</div>
