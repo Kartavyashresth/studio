@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
+import React, { useState, useRef, type ChangeEvent } from 'react';
 import { user as staticUser, activities } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
 import { Briefcase, Calendar, Presentation, Trophy, Camera, Pencil, Save, BookOpen, Heart, Award, UserCheck, Handshake, User as UserIcon } from 'lucide-react';
-import { useState, useRef, type ChangeEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
