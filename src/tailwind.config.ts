@@ -113,6 +113,10 @@ export default {
             filter: 'drop-shadow(0 0 8px #fff)',
           },
         },
+         'pulse-slow': {
+          '0%, 100%': { transform: 'scale(1)', opacity: '0.5' },
+          '50%': { transform: 'scale(1.1)', opacity: '0.7' },
+        },
         'thunder-glow': {
             '0%': { opacity: '0', filter: 'drop-shadow(0 0 2px hsl(var(--primary)))' },
             '20%': { opacity: '1', filter: 'drop-shadow(0 0 15px hsl(var(--primary)))' },
@@ -131,6 +135,8 @@ export default {
         'pulse-glow-white': 'pulse-glow-white 4.5s ease-in-out infinite',
         'pulse-glow-white-delayed': 'pulse-glow-white 4.5s ease-in-out 2.6s infinite',
         'thunder-glow': 'thunder-glow 2.s ease-in-out forwards',
+        'pulse-slow': 'pulse-slow 5s ease-in-out infinite',
+        'pulse-slow-delay': 'pulse-slow 5s 2.5s ease-in-out infinite',
       },
     },
   },

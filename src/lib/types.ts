@@ -6,6 +6,7 @@ export type User = {
   avatarUrl: string;
   program: string;
   studentId: string;
+  about: string;
   marksheetUrl?: string;
 };
 

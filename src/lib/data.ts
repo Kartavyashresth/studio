@@ -10,6 +10,7 @@ export const user: User = {
   avatarUrl: userAvatar?.imageUrl || 'https://picsum.photos/seed/user-avatar/100/100',
   program: 'B.Tech in Computer Science',
   studentId: 'STU123456',
+  about: "Driven and detail-oriented Computer Science student with a passion for developing innovative software solutions. Experienced in full-stack development, machine learning, and passionate about leveraging technology to solve real-world problems. Eager to contribute to a dynamic team and continuously expand my skills.",
   marksheetUrl: 'https://picsum.photos/seed/marksheet-123/800/1100',
 };
 
@@ -230,6 +231,7 @@ export const students: Student[] = [
     program: 'B.A. in Digital Media',
     studentId: 'STU654321',
     marksheetUrl: 'https://picsum.photos/seed/marksheet-654/800/1100',
+    about: 'Creative and innovative digital media student with a knack for storytelling through video and graphics.',
     stats: {
         gpa: 3.5,
         attendance: 95,
@@ -249,6 +251,7 @@ export const students: Student[] = [
     program: 'B.S. in Mechanical Engineering',
     studentId: 'STU789012',
     marksheetUrl: 'https://picsum.photos/seed/marksheet-789/800/1100',
+    about: 'Hands-on mechanical engineering student with a focus on robotics and automation.',
     stats: {
         gpa: 3.9,
         attendance: 88,
@@ -267,6 +270,7 @@ export const students: Student[] = [
     program: 'B.Tech in Computer Science',
     studentId: 'STU345678',
     marksheetUrl: 'https://picsum.photos/seed/marksheet-345/800/1100',
+    about: 'Aspiring software developer with strong problem-solving abilities and a love for competitive programming.',
     stats: {
         gpa: 3.2,
         attendance: 91,
