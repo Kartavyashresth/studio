@@ -13,6 +13,7 @@ import { PerformanceChart } from '@/components/performance-chart';
 import { NoticeBoard } from '@/components/notice-board';
 import { HostelGatepassForm } from '@/components/hostel-gatepass-form';
 import { LibraryCardForm } from '@/components/library-card-form';
+import { FaqDialog } from '@/components/faq-dialog';
 
 export function DashboardContent() {
   const searchParams = useSearchParams();
@@ -75,6 +76,7 @@ export function DashboardContent() {
               <LeaveApplicationForm />
               <HostelGatepassForm />
               <LibraryCardForm />
+              <FaqDialog />
           </CardContent>
         </Card>
       </div>
