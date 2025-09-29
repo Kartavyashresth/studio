@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -8,11 +9,46 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { PlusCircle, UploadCloud, BookOpen, Users, BarChart } from 'lucide-react';
+import { PlusCircle, UploadCloud, BookOpen, Users, BarChart, TrendingUp, User } from 'lucide-react';
 import { courses as initialCourses, students } from '@/lib/data';
 import type { Course } from '@/lib/types';
-import Image from 'next/image';
-import { Progress } from '@/components/ui/progress';
+import { ResponsiveContainer, BarChart as RechartsBarChart, XAxis, YAxis, Tooltip, Legend, Bar, CartesianGrid } from 'recharts';
+
+
+function CourseAnalytics({ courses }: { courses: Course[] }) {
+    const chartData = courses.map(course => ({
+        name: course.name,
+        'Avg. Progress': Math.floor(Math.random() * 80) + 10, // Mock data
+        'Students': Math.floor(Math.random() * students.length) + 1, // Mock data
+    }));
+
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><TrendingUp /> Course Analytics</CardTitle>
+                <CardDescription>Overview of student enrollment and average progress across your courses.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                    <RechartsBarChart data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" tick={{ fontSize: 12 }} angle={-15} textAnchor="end" height={50} />
+                        <YAxis />
+                        <Tooltip
+                            contentStyle={{
+                                backgroundColor: 'hsl(var(--background))',
+                                borderColor: 'hsl(var(--border))',
+                            }}
+                        />
+                        <Legend />
+                        <Bar dataKey="Students" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="Avg. Progress" fill="hsl(var(--chart-2))" radius={[4, 4, 0, 0]} />
+                    </RechartsBarChart>
+                </ResponsiveContainer>
+            </CardContent>
+        </Card>
+    );
+}
 
 export default function LmsManagementPage() {
   const [courses, setCourses] = useState<Course[]>(initialCourses);
@@ -46,16 +82,6 @@ export default function LmsManagementPage() {
     event.currentTarget.reset();
   };
 
-  const studentsEnrolled = (courseId: string) => {
-    // Mock logic for student enrollment
-    return Math.floor(Math.random() * students.length) + 1;
-  };
-  
-  const averageProgress = (courseId: string) => {
-    // Mock logic for average progress
-    return Math.floor(Math.random() * 80) + 10;
-  }
-
   return (
     <AppLayout>
       <div className="flex flex-col gap-8">
@@ -67,8 +93,37 @@ export default function LmsManagementPage() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-3">
+          <div className="lg:col-span-2 space-y-8">
+             <CourseAnalytics courses={courses} />
+            
+             <h2 className="text-2xl font-headline">Course Administration</h2>
+             <div className="space-y-6">
+                {courses.map(course => (
+                <Card key={course.id}>
+                    <CardHeader>
+                        <CardTitle>{course.name}</CardTitle>
+                        <CardDescription>Taught by {course.instructor}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="grid gap-4 sm:grid-cols-2">
+                        <div className="space-y-4">
+                            <h4 className="font-semibold">Content Administration</h4>
+                            <Textarea placeholder="Add a link to a virtual session (e.g., Google Meet)" />
+                            <Button variant="outline" className="w-full">
+                                <UploadCloud className="mr-2"/> Upload Materials
+                            </Button>
+                        </div>
+                        <div className="space-y-4">
+                            <h4 className="font-semibold">Learner Tools</h4>
+                            <Button variant="outline" className="w-full"><BarChart className="mr-2"/> View Detailed Reports</Button>
+                            <Button variant="outline" className="w-full"><Users className="mr-2"/> Manage Enrollment</Button>
+                        </div>
+                    </CardContent>
+                </Card>
+                ))}
+            </div>
+          </div>
           <div className="lg:col-span-1">
-            <Card>
+            <Card className="sticky top-24">
               <CardHeader>
                 <CardTitle className="font-headline">Create New Course</CardTitle>
                 <CardDescription>
@@ -96,40 +151,6 @@ export default function LmsManagementPage() {
                 </form>
               </CardContent>
             </Card>
-          </div>
-          <div className="lg:col-span-2 space-y-6">
-            {courses.map(course => (
-              <Card key={course.id}>
-                <CardHeader>
-                    <CardTitle>{course.name}</CardTitle>
-                    <CardDescription>Taught by {course.instructor}</CardDescription>
-                </CardHeader>
-                <CardContent className="grid gap-4 sm:grid-cols-2">
-                    <div className="space-y-4">
-                        <h4 className="font-semibold">Learner Management</h4>
-                        <div className='flex items-center gap-2 text-sm text-muted-foreground'>
-                            <Users className="h-4 w-4"/> 
-                            <span>{studentsEnrolled(course.id)} Students Enrolled</span>
-                        </div>
-                         <div className="space-y-1">
-                             <div className="flex justify-between items-center text-sm text-muted-foreground">
-                                <span>Average Progress</span>
-                                <span>{averageProgress(course.id)}%</span>
-                             </div>
-                            <Progress value={averageProgress(course.id)} />
-                         </div>
-                         <Button variant="outline" size="sm"><BarChart className="mr-2"/> View Reports</Button>
-                    </div>
-                     <div className="space-y-4">
-                        <h4 className="font-semibold">Content Administration</h4>
-                         <Textarea placeholder="Add a link to a virtual session (e.g., Google Meet)" />
-                         <Button variant="outline" className="w-full">
-                            <UploadCloud className="mr-2"/> Upload Materials
-                         </Button>
-                    </div>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </div>
       </div>
