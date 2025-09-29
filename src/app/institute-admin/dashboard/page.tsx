@@ -3,9 +3,10 @@ import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { UserCog, Cog, BarChart, UserPlus, FilePenLine } from 'lucide-react';
+import { UserCog, Cog, BarChart, UserPlus, Briefcase, TrendingUp, Building2 } from 'lucide-react';
 import { registeredFaculty, students } from '@/lib/data';
 import { PublishNoticeForm } from '@/components/publish-notice-form';
+import { TopRecruitersChart } from '@/components/top-recruiters-chart';
 
 export default function AdminDashboardPage({ searchParams }: { searchParams: { name?: string } }) {
   const adminName = searchParams.name || 'Admin';
@@ -20,7 +21,7 @@ export default function AdminDashboardPage({ searchParams }: { searchParams: { n
           </p>
         </div>
         
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Faculty Management</CardTitle>
@@ -75,6 +76,34 @@ export default function AdminDashboardPage({ searchParams }: { searchParams: { n
                 </Button>
             </CardContent>
           </Card>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <TopRecruitersChart />
+          </div>
+          <div className="lg:col-span-1 space-y-4">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Job Postings</CardTitle>
+                <Briefcase className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">125</div>
+                <p className="text-xs text-muted-foreground">New job postings this month.</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Placement Rate</CardTitle>
+                <TrendingUp className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">89%</div>
+                <p className="text-xs text-muted-foreground">For the 2024 graduating class.</p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </AppLayout>
