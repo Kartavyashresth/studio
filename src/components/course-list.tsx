@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { ArrowRight, User } from 'lucide-react';
+import Link from 'next/link';
 
 export function CourseList({ courses }: { courses: Course[] }) {
   return (
@@ -41,9 +42,11 @@ export function CourseList({ courses }: { courses: Course[] }) {
             </div>
           </CardContent>
           <CardFooter>
-            <Button className="w-full">
-              Continue Learning
-              <ArrowRight className="ml-2 h-4 w-4" />
+            <Button asChild className="w-full">
+              <Link href={`/courses/${course.id}`}>
+                View Course
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
           </CardFooter>
         </Card>

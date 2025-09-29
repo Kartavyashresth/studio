@@ -23,6 +23,7 @@ const studentNavItems = [
 const facultyNavItems = [
     { href: '/faculty/dashboard', label: 'Faculty Dashboard', icon: Users },
     { href: '/faculty/verification', label: 'Verification Requests', icon: CheckSquare },
+    { href: '/faculty/lms', label: 'LMS Management', icon: GraduationCap },
     { href: '/faculty/reports', label: 'Accreditation Reports', icon: FileText },
 ];
 
